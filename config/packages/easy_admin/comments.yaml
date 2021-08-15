@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        Comments:
+            label: 'Commentaires'
+            class: App\Entity\Comments
+            list:
+                title: 'Liste des commentaires'
+                collapse_actions: false
+                max_results: 25
+                actions:
+                    - '-search'
+                    - '-show'
+                    - '-edit'
+                    - '-new'
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: 'name', label: 'Auteur', type: string }
+                    - { property: 'email', label: 'Email', type: string }
+                    - { property: 'content', label: 'Commentaire', type: text }
+                    - { property: 'post', label: 'Article' }
+                    - { property: 'createdAt', label: 'Envoyé le', type: date }
+
+

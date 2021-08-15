@@ -1,0 +1,11 @@
+app_event_index:
+    path: /rencontres/
+    methods: [GET, POST]
+    controller: App\Controller\EventController::index
+
+app_event_show:
+    path: /rencontres/{slug}/
+    methods: [GET, POST]
+    controller: App\Controller\EventController::show
+
+

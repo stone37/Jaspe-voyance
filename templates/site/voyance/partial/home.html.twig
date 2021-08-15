@@ -1,0 +1,34 @@
+{% if settings.activeVoyance %}
+    <hr class="mb-5 mt-3">
+    <section class="mt-5 wow fadeIn">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <img src="{{ asset('images/monia.jpg') }}" class="img-fluid z-depth-1-half" alt="">
+            </div>
+            <div class="col-md-8 mb-4">
+                <h1 class="h1-responsive mb-3 font-weight-600 text-primary">Note de notre voyante principale</h1>
+                <p>
+                    Je ne nomme Monia, je suis médium de naissance. J'ai repris le flambeau de ma mère,
+                    qui est un de mes guides. Je ressens les gens, les lieux... Je pense etre visionnaire,
+                    à ma petite échelle. j'apporte du réconfort et redonne de l'espoir.
+                </p>
+                <p>
+                    La voyance n’est pas une science exacte, et seul un échange sérieux, basé sur une confiance
+                    mutuelle, me permet de vous conseiller au mieux et de vous aider à faire les bons choix.
+                </p>
+                <p>
+                    Chez moi, pas de prédiction à la va-vite. Quelle que soit la prestation de voyance que
+                    vous choisissez, je prends le temps de vous connaître, de vous écouter et de vous exposer
+                    clairement mes prédictions, en toute confidentialité.
+                </p>
+                <p>
+                    A bientôt !
+                </p>
+                <a href="{{ path('app_voyance_index') }}" class="btn btn-secondary mt-2">
+                    Tout savoir sur notre service de voyance
+                    <i class="fas fa-angle-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endif %}

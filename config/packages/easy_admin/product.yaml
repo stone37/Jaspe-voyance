@@ -1,0 +1,34 @@
+easy_admin:
+    entities:
+        Product:
+            label: 'Produits'
+            class: App\Entity\Product
+            form:
+                fields:
+                    - { property: name, label: 'Nom', type: text, type_options: { trim: true, help: 'Champs obligatoire' } }
+                    - { property: price, label: 'Prix', type: money, type_options: { trim: true, help: 'Champs obligatoire' } }
+                    - { property: description, label: 'Description', type: textarea }
+                    - { property: tva, label: 'Tva', help: 'Champs obligatoire' }
+                    - { property: 'file', label: 'Image', type: 'vich_image' }
+            list:
+                title: 'Liste des produits'
+                collapse_actions: false
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                actions:
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Editer' }
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'price', label: 'Prix' }
+                    - { property: 'description', label: 'Description' }
+                    - { property: 'fileName', label: 'Image', type: image, base_path: '%app.path.product%' }
+            new:
+                title: 'Nouveau produit'
+            edit:
+                title: 'Edition d''un produit'
+                actions:
+                    - '-delete'
+
+
+

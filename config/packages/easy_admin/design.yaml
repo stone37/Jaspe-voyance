@@ -1,0 +1,43 @@
+easy_admin:
+    design:
+        brand_color: 'red'
+        assets:
+            css:
+                - 'assets/css/admin.css'
+            js:
+                - '/bundles/cksourceckfinder/ckfinder/ckfinder.js'
+                - '/assets/js/setup-ckfinder.js'
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+        menu:
+            - { label: 'Tableau de bord', icon: 'th-large', route: 'app_admin_dashboard', default: true }
+            - { label: Consultation }
+            - { label: 'En cabinet', icon: 'home', entity: 'VoyanceC' }
+            - { label: 'Par téléphone', icon: 'phone-alt', entity: 'VoyanceP' }
+
+            - { label: Catalogue }
+            - { label: 'Produits', icon: 'cube', entity: 'Product' }
+
+            - { label: Vente }
+            - { label: 'Commandes', icon: 'shopping-cart', entity: 'Order' }
+            - { label: 'Expéditions', icon: 'shipping-fast', entity: 'Shipment' }
+
+            - { label: Article }
+            - { label: 'Tous les articles', icon: 'newspaper', entity: 'Post' }
+            - { label: 'Catégories', icon: 'folder', entity: 'Category' }
+            - { label: 'Étiquettes', icon: 'tags', entity: 'Tag' }
+            - { label: 'Commentaires', icon: 'comment', entity: 'Comments' }
+
+            - { label: 'Témoignage' }
+            - { label: 'Témoignages actif', icon: 'comments', entity: 'ReviewA' }
+            - { label: 'Témoignages inactif', icon: 'comment-slash', entity: 'Review' }
+
+            - { label: 'Configuration' }
+            - { label: 'Générale', icon: 'cog', route: 'app_admin_site_settings' }
+            - { label: 'Modules du site', icon: 'list-alt', route: 'app_admin_module_settings' }
+            - { label: 'Modes de livraison', icon: 'shipping-fast', entity: 'ShipmentMethod' }
+            - { label: 'Taux de taxe', icon: 'money', entity: 'Tax' }
+            - { label: 'Administrateurs', icon: 'user-lock', entity: 'Admin' }
+
+

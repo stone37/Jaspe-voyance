@@ -1,0 +1,20 @@
+html,
+body,
+.view {
+    height: 60%;
+}
+
+@media (min-width: 992px) {
+    html,
+    body,
+    .view {
+        height: 80% !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .bc {
+        margin-top: -7rem;
+    }
+}
+

@@ -1,0 +1,27 @@
+easy_admin:
+    entities:
+        Tag:
+            label: 'Étiquettes'
+            class: App\Entity\Tag
+            form:
+                fields:
+                    - { property: name, label: 'Nom', type: text, type_options: { trim: true } }
+            list:
+                title: 'Liste des étiquettes'
+                collapse_actions: false
+                max_results: 25
+                actions:
+                    - '-search'
+                    - '-show'
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Editer' }
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'name', label: 'Nom', type: string }
+                    - { property: 'slug', label: 'slug', type: string }
+            new:
+                title: 'Nouvelle étiquettes'
+            edit:
+                title: 'Edition d''une étiquettes'
+
+
+

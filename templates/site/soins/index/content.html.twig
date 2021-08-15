@@ -1,0 +1,105 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <section>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="h2-responsive text-primary font-weight-600 text-center mb-3">Soins et thérapies énergétiques</h2>
+                            <p>
+                                Au fil de notre existence, les diverses perturbations et tous les traumatismes
+                                non exprimés s’impriment dans notre corps, provoquant des blocages qui
+                                empêchent l’énergie présente en chacun de nous de circuler correctement.
+                                Apparaissent alors des troubles entraînant des problèmes de santé physique
+                                et mentale. <br>
+                                Les <span class="text-primary">soins et thérapies énergétiques</span> contribuent à apaiser le stress,
+                                cause de mal-être et de nombreuses maladies. <br>
+                                Ils s’adressent à tous. Leur objectif est d’élever et d’équilibrer l’énergie vitale pour faciliter la relance de
+                                vos processus d’auto-guérison de façon à retrouver la santé physique mais aussi psychique. Il agit sur la
+                                globalité de l’être dans ses dimensions physiques, affectives, mentales et spirituelles et s’adresse à toute
+                                personne quel que soit son âge, souhaitant améliorer son mieux-être tout en complétant efficacement un éventuel
+                                traitement médical.
+                            </p>
+                            <p>
+                            <div class="font-weight-600">Il procure les bienfaits suivants:</div>
+                            <ul>
+                                <li>Regain d’énergie</li>
+                                <li>Amélioration de la vitalité</li>
+                                <li>Renforcement du système immunitaire</li>
+                                <li>Soulagement des douleurs et inflammations</li>
+                                <li>Réduction du stress</li>
+                                <li>Bien-être général</li>
+                                <li>Libération des blocages physiques, émotionnels et mentaux</li>
+                                <li>Etat profond de paix intérieure</li>
+                                <li>Harmonisation globale de l’être au niveau physique, émotionnel, mental et spirituel</li>
+                                <li>Alignement corps, âme et esprit</li>
+                                <li>Epanouissement spirituel</li>
+                            </ul>
+
+                            <p>
+                                Ils soutiennent également un traitement médical, lors d’une maladie ou en cas d’hospitalisation,
+                                stimulant l’organisme, le système immunitaire et l’auto-guérison tout en limitant les effets
+                                indésirables de certains médicaments allopathiques.
+                            </p>
+                            <h2 class="h2-responsive text-center font-weight-600 text-primary mt-4 mb-3">
+                                Prendre rendez-vous
+                            </h2>
+                            <p>
+                                Pour en savoir plus sur les soins et thérapies énergétiques ou pour prendre rendez-vous,
+                                contactez-nous au {{ settings.phone }} ou via le formulaire de contact.
+                            </p>
+                            <p class="text-secondary font-weight-600">
+                                Tarif pour une séance de soins énergétiques
+                                {% if settings.soinsTime %}de <span class="font-weight-stone-600 text-primary">{{ settings.soinsTime }} minutes</span>{% endif %} :
+                                {% if settings.soinsRemise %}
+                                    {% set price = (settings.soinsPrice - ((settings.soinsPrice * settings.soinsRemise) / 100)) %}
+
+                                    {% if price > 0 %}
+                                        <span class="text-primary h2-responsive font-weight-stone-600 mr-1"><strong>€{{ price|number_format(2, '.', ',') }}</strong></span>
+                                        <span class="text-grey h3-responsive"><strong><s>€{{ settings.soinsPrice|number_format(2, '.', ',') }}</s></strong></span>
+                                    {% else %}
+                                        <span class="h2-responsive text-primary">Gratuite</span>
+                                    {% endif %}
+                                {% else %}
+                                    {% if settings.soinsPrice %}
+                                        <span class="h2-responsive text-primary">€{{ settings.soinsPrice|number_format(2, '.', ',') }}</span>
+                                    {% else %}
+                                        <span class="h2-responsive text-primary">Gratuite</span>
+                                    {% endif %}
+                                {% endif %}
+                            </p>
+
+                            <div class="row d-flex justify-content-between mt-3 mb-3">
+                                <div class="col-12 col-lg-5 mb-2">
+                                    <a href="tel:+33 {{ settings.phone }}" class="btn btn-outline-primary font-weight-stone-600
+                                        text-center" style="line-height: 23px; font-weight: 600 !important">
+                                        Demande de rendez-vous par téléphone au <br>
+                                        <span class="font-weight-600 text-secondary h3-responsive mt-2 d-inline-block">
+                                            {{ settings.phone }}
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-lg-5 mb-2">
+                                    <a id="event-demand-form-btn" href="{{ path('app_soins_contact') }}"
+                                       class="btn btn-primary" style="line-height: 23px; font-weight: 500 !important">
+                                        Demande de rendez-vous par internet <br>
+                                        <span class="font-weight-600 text-secondary h3-responsive mt-2 d-inline-block">
+                                            via un formulaire
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'soins'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

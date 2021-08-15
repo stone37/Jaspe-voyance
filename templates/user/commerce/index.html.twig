@@ -1,0 +1,23 @@
+{% extends 'user/layout.html.twig' %}
+
+{% block title %}Locales | {{ settings.name }}{% endblock %}
+
+{% block app_breadcrumbs %}{% endblock %}
+
+{% block app_body %}
+    {% include 'user/commerce/index/_header.html.twig' %}
+
+    {% include 'user/commerce/index/_content.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/user.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/site/user.js'} %}
+{% endblock %}

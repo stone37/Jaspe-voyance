@@ -1,0 +1,12 @@
+easy_admin:
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    list:
+        collapse_actions: true
+        batch_actions: ['delete']
+        actions:
+            - { name: 'new', icon: 'plus', label: 'Créer' }
+            - { name: 'edit', icon: 'pencil', label: false, title: 'Editer' }
+            - { name: 'delete', icon: 'times', label: false, title: 'Suprimer' }

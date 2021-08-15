@@ -1,0 +1,37 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        settings_images:
+            uri_prefix: '%app.path.settings%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.settings%'
+        post_images:
+            uri_prefix: '%app.path.posts%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.posts%'
+        product_images:
+            uri_prefix: '%app.path.product%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.product%'
+        user_image:
+            uri_prefix: '%app.path.user%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.user%'
+        event_images:
+            uri_prefix: '%app.path.event%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.event%'
+        shipment_images:
+            uri_prefix: '%app.path.shipment%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.shipment%'
+        banner_images:
+            uri_prefix: '%app.path.banner%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public%app.path.banner%'
+
+
+    #mappings:banner_images
+    #    products:
+    #        uri_prefix: /images/products
+    #        upload_destination: '%kernel.project_dir%/public/images/products'

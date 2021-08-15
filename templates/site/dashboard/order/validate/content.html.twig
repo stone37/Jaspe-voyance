@@ -1,0 +1,85 @@
+{% if orders|length > 0 %}
+    <div class="row app-user">
+        <div class="col-12">
+            <table class="table table-responsive-sm">
+                <thead class="text-primary">
+                    <tr>
+                        <th scope="col" class="font-weight-stone-500 text-center">#</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Date</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Produits</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Montant</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Payée</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Expédié</th>
+                        <th scope="col" class="font-weight-stone-500 text-center"></th>
+                    </tr>
+                </thead>
+                <tbody id="list-checkbook-container">
+                {% for order in orders %}
+                    <tr>
+                        <td class="text-center">{{ loop.index }}</td>
+                        <td class="text-center">{{ order.createdAt|date('d/m/Y H:i:s') }}</td>
+                        <td class="text-center">
+                            {% for item in order.items %}
+                                <a href="{{ path('app_product_show', {'slug': item.product.slug }) }}"
+                                   class="link">{{ item.product.name }}</a>
+                                {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        </td>
+                        <td class="text-center">
+                            €{{ order.priceTotal|number_format(2, '.', ',') }}
+                        </td>
+                        <td class="text-center">
+                            {% if order.validate %}
+                                <span class="badge badge-success">
+                                    <i class="fas fa-check mr-1"></i> Oui
+                                </span>
+                            {% else %}
+                                <span class="badge badge-danger">
+                                    <i class="fas fa-times mr-1"></i> Non
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if order.shipment|length > 0 %}
+                                {% if order.shipment.enabled %}
+                                    <span class="badge badge-success">
+                                    <i class="fas fa-check mr-1"></i> Oui
+                                </span>
+                                {% else %}
+                                    <span class="badge badge-danger">
+                                    <i class="fas fa-times mr-1"></i> Non
+                                </span>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <a href="" class="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                                <div class="dropdown-menu dropdown-primary dropdown-menu-right mt-0">
+                                    <a href="{{ path('app_order_invoice', {'id': order.id}) }}" class="dropdown-item">
+                                        <i class="fas fa-file-invoice mr-1"></i> Facture
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 d-flex justify-content-start mt-2">
+            <div class="font-weight-stone-500 text-secondary">{{ orders.totalItemCount }} resultats</div>
+        </div>
+        <div class="col-12 d-flex justify-content-center mt-2">
+            {{ knp_pagination_render(orders, 'Ui/_pagination.html.twig') }}
+        </div>
+    </div>
+{% else %}
+    <div class="row app-user d-flex justify-content-center">
+        <div class="col-12 col-md-8 text-center mt-3 mt-md-5">
+            <h3 class="text-primary h3-responsive font-weight-stone-600">
+                Vous n'avez aucune commande.
+            </h3>
+        </div>
+    </div>
+{% endif %}

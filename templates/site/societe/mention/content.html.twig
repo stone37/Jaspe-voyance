@@ -1,0 +1,58 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="">
+                            Le site jaspevoyance.com est édité par: <br>
+                            <a href="" class="font-weight-stone-600 text-primary">Octaix labs</a>,
+                            micro-entreprise située à Yamoussoukro (Côte d'Ivoire) dont le SIRET est le 52831242400013.
+                        </p>
+
+                        <p>
+                            Le <span class="font-weight-stone-600 text-primary">Directeur de Publication</span> est
+                            <span class="font-weight-stone-600 dtext-primary">Stéphane Kouamé</span>,
+                            qui assure également la maintenance et l’administration pour le compte de madame
+                            <span class="font-weight-stone-600 text-primary">Monique Mesli</span>.
+                        </p>
+
+                        <p>
+                            Le site jaspevoyance.com est hébergé par: <br>
+                            <a href="https://www.a-a-hebergement.com/" class="link font-weight-stone-600" target="_blank">a-a-hebergement, </a>
+                            dont le siège social est établi
+                            <span class="font-weight-stone-600 text-primary">10 rue Penthièvre, 75008 PARIS FRANCE</span>
+                        </p>
+
+                        <h3 class="h3-responsive font-weight-stone-600 text-primary mt-5">Déclaration de confidentialité</h3>
+                        <p>
+                            jaspevoyance.com prête une attention particulière à vos données personnelles, et s’engage
+                            de par ses conditions d’utilisation à ne transmettre, vendre ou céder à un tiers aucune information
+                            personnelle vous concernant. Veuillez également consulter notre
+                            <a href="" class="text-primary font-weight-stone-600">politique concernant la gestion des cookies</a>.
+                        </p>
+                        <p>
+                            Conformément à la loi « Informatique et Libertés » N° 78-17 du 6 Janvier 1978, vous bénéficiez d’un
+                            droit d’accès, de rectification et d’opposition. Pour l’exercer, merci de bien vouloir nous contacter
+                            par l’intermédiaire du formulaire de <a href="{{ path('app_contact') }}" class="text-primary font-weight-stone-600">contact</a>.
+                        </p>
+
+                        <h3 class="h3-responsive mt-5 text-primary font-weight-stone-600 ">
+                            Agence de création du Site Internet
+                        </h3>
+
+                        <div class="text-uppercase font-weight-stone-600">Octaix labs</div>
+                        <div>Habitat, Yamoussoukro (Côte d'Ivoire)</div>
+                        <div>Tel: (+225) 07 77 06 15 69 </div>
+                        <div>Email: contact@octaix.com ou kksteph1989@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

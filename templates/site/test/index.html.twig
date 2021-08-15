@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aloha!</title>
+
+    <style type="text/css">
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
+        table{
+            font-size: x-small;
+        }
+        tfoot tr td{
+            font-weight: bold;
+            font-size: x-small;
+        }
+        .gray {
+            background-color: lightgray
+        }
+    </style>
+
+</head>
+<body>
+
+<table width="100%">
+    <tr>
+        <td valign="top"><img src="{{ vich_uploader_asset(settings, 'file')}}" alt="" width="150"/></td>
+        <td align="right">
+            <h1 style="color:#f72459; font-weight: 600;">{{ settings.name }}</h1>
+            <pre>
+                {% if settings.city %}{{ settings.city }} <br>{% endif %}
+                {% if settings.address %}{{ settings.address }} <br>{% endif %}
+                {% if settings.phone %}{{ settings.phone }} <br>{% endif %}
+                {% if settings.fax %}{{ settings.fax }} <br>{% endif %}
+                {% if settings.email %}{{ settings.email }} <br>{% endif %}
+            </pre>
+        </td>
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td><strong>De: </strong>{{ settings.name }}</td>
+        <td><strong>A:</strong> Linblum - Barrio Comercial</td>
+    </tr>
+</table>
+
+<br/>
+
+<table width="100%">
+    <thead style="background-color: lightgray;">
+    <tr>
+        <th>#</th>
+        <th>Description</th>
+        <th>Quantité</th>
+        <th>Prix unitaire</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Playstation IV - Black</td>
+        <td align="right">1</td>
+        <td align="right">€1400.00</td>
+        <td align="right">€1400.00</td>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <td>Metal Gear Solid - Phantom</td>
+        <td align="right">1</td>
+        <td align="right">€105.00</td>
+        <td align="right">€105.00</td>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <td>Final Fantasy XV - Game</td>
+        <td align="right">1</td>
+        <td align="right">€130.00</td>
+        <td align="right">€130.00</td>
+    </tr>
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td colspan="3"></td>
+        <td align="right">Total HT</td>
+        <td align="right">€1635.00</td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <td align="right">Coût de l'expédition</td>
+        <td align="right">€294.3</td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <td align="right">Total des taxes</td>
+        <td align="right">€294.3</td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <td align="right">Total TTC</td>
+        <td align="right" class="gray">€1929.3</td>
+    </tr>
+    </tfoot>
+</table>
+
+<p><b>Date :</b> 6/12/2019</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+{#<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Facture</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 body-main">
+            <div class="col-md-12">
+                <div class="row mt-4">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="">
+                            <img src="http://via.placeholder.com/400x90?text=logo" alt="Invoce Template" class="img-fluid"
+                                 style="width: 300px" />
+                        </div>
+                        <div class="">
+                            <h4 style="color: #f72459"><strong class="font-weight-bold">{{ settings.name }}</strong></h4>
+
+                            {% if settings.address %}
+                                <div>{{ settings.address }}</div>
+                            {% endif %}
+                            <div>{{ settings.phone }}</div>
+                            <div>{{ settings.email }}</div>
+                        </div>
+                    </div>
+                </div> <br />
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2 class="text-uppercase">Facture</h2>
+                        <h5>04854654101</h5>
+                    </div>
+                </div> <br />
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                <h5>Description</h5>
+                            </th>
+                            <th>
+                                <h5>Montant</h5>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-md-9">Samsung Galaxy 8 64 GB</td>
+                            <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 50,000 </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9">JBL Bluetooth Speaker</td>
+                            <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 5,200 </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9">Apple Iphone 6s 16GB</td>
+                            <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 25,000 </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9">MI Smartwatch 2</td>
+                            <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 2,200 </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <p> <strong>Total HT :</strong> </p>
+                                <p> <strong>Coût de l'expédition:</strong> </p>
+                                <p> <strong>Total des taxes: </strong> </p>
+                                <p> <strong>Total TTC: </strong> </p>
+                            </td>
+                            <td>
+                                <p> <strong> 500 </strong> </p>
+                                <p> <strong> 82,900</strong> </p>
+                                <p> <strong> 3,000 </strong> </p>
+                                <p> <strong> 79,900</strong> </p>
+                            </td>
+                        </tr>
+                        <tr style="color: #f72459">
+                            <td class="text-right">
+                                <h4><strong class="font-weight-bold">Total:</strong></h4>
+                            </td>
+                            <td class="text-left">
+                                <h4><strong class="font-weight-bold">€79,900</strong></h4>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="col-md-12">
+                        <p><b>Date :</b> 6/12/2019</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/jquery.js'} %}
+{% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/popper.js'} %}
+{% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/bootstrap.js'} %}
+{% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/mdb.js'} %}
+</body>
+</html>#}
+
+
+
+

@@ -1,0 +1,127 @@
+{% if locales|length > 0 %}
+    <div class="row app-user">
+        <div class="col-12">
+            <table class="table">
+                <thead class="text-primary">
+                    <tr>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Nom</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Ville</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Téléphone</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Email</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Status</th>
+                        <th scope="col" class="font-weight-stone-500 text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for locale in locales %}
+                        <tr>
+                            <td class="text-center">{{ loop.index }}</td>
+                            <td class="text-center">{{ locale.name|capitalize }}</td>
+                            <td class="text-center">{{ locale.city.name|capitalize }}</td>
+                            <td class="text-center">{{ locale.phone }}</td>
+                            <td class="text-center">{{ locale.email }}</td>
+                            <td class="text-center">
+                                {% if locale.enabled %}
+                                    <span class="badge badge-success">
+                                        <i class="fas fa-check mr-1"></i>
+                                        Actif
+                                    </span>
+                                {% else %}
+                                    <span class="badge badge-danger">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Inactif
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ path('app_dashboard_locale_udpate', {'id': locale.id}) }}" class="text-secondary" data-toggle="tooltip" title="Modifier"><i class="fas fa-pencil-alt"></i></a>
+                                <!--a href="" class="text-danger" data-toggle="tooltip" title="Supprimer"><i class="fas fa-trash pl-2"></i></a-->
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 d-flex justify-content-center mt-2">
+            {{ knp_pagination_render(locales, 'Ui/_pagination.html.twig') }}
+        </div>
+    </div>
+{% else %}
+    <div class="row app-user d-flex justify-content-center">
+        <div class="col-12 col-md-8 text-center mt-3 mt-md-5">
+            <h3 class="text-primary h3-responsive font-weight-stone-600">
+                Vous n'avez aucun locale.
+            </h3>
+        </div>
+    </div>
+{% endif %}
+
+{#
+<table class="table">
+    <thead class="text-primary">
+        <tr>
+            <th scope="col" class="text-center">
+                <div class="" style="position: relative; right: 10px; top: 2px">
+                    <input type="checkbox" name="test" class="form-check-input filled-in" id="test" value="" style="margin: 0 !important;" />
+                    <label class="form-check-label" for="test"
+                           style="padding-left: 0!important; "></label>
+                </div>
+            </th>
+            <th scope="col" class="font-weight-stone-500 text-center"></th>
+            <th scope="col" class="font-weight-stone-500 text-center">Nom</th>
+            <th scope="col" class="font-weight-stone-500 text-center">Ville</th>
+            <th scope="col" class="font-weight-stone-500 text-center">Téléphone</th>
+            <th scope="col" class="font-weight-stone-500 text-center">Email</th>
+            <th scope="col" class="font-weight-stone-500 text-center">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">
+                <div class="" style="position: relative; right: 10px; top: 2px">
+                    <input type="checkbox" name="test1" class="form-check-input filled-in" id="test1" value="" style="margin: 0 !important;" />
+                    <label class="form-check-label" for="test1"
+                           style="padding-left: 0!important; "></label>
+                </div>
+            </td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+        </tr>
+        <tr>
+            <td class="text-center">
+                <div class="" style="position: relative; right: 10px; top: 2px">
+                    <input type="checkbox" name="test2" class="form-check-input filled-in" id="test2" value="" style="margin: 0 !important;" />
+                    <label class="form-check-label" for="test2"
+                           style="padding-left: 0!important; "></label>
+                </div>
+            </td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+        </tr>
+        <tr>
+            <td class="text-center">
+                <div class="" style="position: relative; right: 10px; top: 2px">
+                    <input type="checkbox" name="test3" class="form-check-input filled-in" id="test3" value="" style="margin: 0 !important;" />
+                    <label class="form-check-label" for="test3"
+                           style="padding-left: 0!important; "></label>
+                </div>
+            </td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+        </tr>
+    </tbody>
+</table>
+#}

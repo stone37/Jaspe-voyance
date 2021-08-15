@@ -1,0 +1,26 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}
+    {% if type == 1 %}
+        Demandes de consultation par mail
+    {% elseif type == 2 %}
+        Demandes de consultation au téléphone
+    {% else %}
+        Rendez-vous en cabinet
+    {% endif %}
+    | {{ parent() }}
+{% endblock %}
+
+{% block app_body %}
+    {% include 'admin/demand/index/_header.html.twig' %}
+
+    {% include 'admin/demand/index/_content.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

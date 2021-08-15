@@ -4,6 +4,14 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.path.settings: /uploads/images/logo
+    app.path.posts: /uploads/images/posts
+    app.path.product: /uploads/images/product
+    app.path.user: /uploads/images/user
+    app.path.event: /uploads/images/event
+    app.path.shipment: /uploads/images/shipment
+    app.path.banner: /uploads/images/banner
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     # default configuration for services in *this* file
@@ -25,3 +33,20 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    app_form_registration:
+        class: App\Form\RegistrationFormType
+        tags:
+            - { name: form.type }
+
+    app_form_profile:
+        class: App\Form\ProfileFormType
+        tags:
+            - { name: form.type }
+
+    #Sonata\SeoBundle\Seo\SeoPageInterface:
+        #alias: "sonata.seo.page.default"
+
+
+
+

@@ -1,0 +1,77 @@
+{% extends 'site/layout.html.twig' %}
+
+{% block title %}<title>Mes commandes |Tableau de bord | {{ settings.name }}</title>{% endblock %}
+
+{% block app_cart %}{% endblock %}
+{% block seo %}{% endblock %}
+{% block app_navbar_three %}{% endblock %}
+{% block app_navbar_second %}{% endblock %}
+
+{% block app_body %}
+    <section class="mt-md-90 mb-5 px-0 px-lg-2">
+        <div class="container-lg container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bc text-white mb-1">
+                        <div class="mt-lg-4">
+                            {{ wo_render_breadcrumbs({ viewTemplate: '_breadcrumb.html.twig', listClass: 'breadcrumb',
+                                itemClass: 'breadcrumb-item', separator: '>', separatorClass: 'fas fa-angle-right'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="mt-0 d-flex justify-content-end">
+                        <div class="d-none d-md-block">
+                            <div class="btn-group title" role="group" aria-label="Basic user menu">
+                                <a href="{{ path('app_dashboard_index') }}"
+                                   class="btn btn-outline-grey waves-effect px-3 px-lg-4">
+                                    Tableau de bord
+                                </a>
+                                <a href="{{ path('app_dashboard_order_index') }}"
+                                   class="btn btn-outline-grey waves-effect px-3 px-lg-4 active">
+                                    Mes commandes
+                                </a>
+                                <a href="{{ path('fos_user_profile_show') }}"
+                                   class="btn btn-outline-grey waves-effect px-3 px-lg-4">
+                                    Mon profil
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-md-3 mb-3">
+                    <div class="mt-0 d-flex justify-content-end">
+                        <div class="">
+                            <div class="btn-group title" role="group" aria-label="Basic user menu">
+                                <a href="{{ path('app_dashboard_order_index') }}"
+                                   class="btn btn-grey btn-sm waves-effect z-depth-0 sub px-1 px-md-3 px-lg-4 active">
+                                    Mes commandes
+                                </a>
+                                <a href="{{ path('app_dashboard_order_index_active') }}"
+                                   class="btn btn-grey btn-sm waves-effect z-depth-0 sub px-1 px-md-3 px-lg-4">
+                                    Mes commandes validées
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'site/dashboard/order/index/content.html.twig' %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/page.css'} %}
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/user.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

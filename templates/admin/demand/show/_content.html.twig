@@ -1,0 +1,113 @@
+{% import 'Ui/Macro/buttons.html.twig' as buttons %}
+
+<div class="row app-user">
+    <div class="col-12">
+        <table class="table table-borderless table-responsive-sm table-responsive-md">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Id</div>
+                    <div class="content text-primary font-weight-stone-600">{{ demand.id }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Nom et prénom</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {{ demand.lastName|capitalize }} {{ demand.firstName|capitalize }}
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Email</div>
+                    <div class="content text-primary font-weight-stone-600">{{ demand.email }}</div>
+                </td>
+
+                {% if type == 2 or type == 3 %}
+                    <td>
+                        <div class="title font-weight-stone-600 grey-text">Téléphone</div>
+                        <div class="content text-primary font-weight-stone-600">{{ demand.phone }}</div>
+                    </td>
+                {% endif %}
+
+                {% if type == 1 %}
+                    <td>
+                        <div class="title font-weight-stone-600 grey-text">Domaine</div>
+                        <div class="content text-primary font-weight-stone-600">{{ demand.field }}</div>
+                    </td>
+                {% endif %}
+
+                {% if type == 2 or type == 3 %}
+                    <td>
+                        <div class="title font-weight-stone-600 grey-text">Disponibilité</div>
+                        <div class="content text-primary font-weight-stone-600">
+                            {% for days in demand.daysWeek %}
+                                {{ days }} {% if not loop.last %}, {% endif %}
+                            {% endfor %}
+
+                            ({% for time in demand.timeDay %}
+                            {{ time }} {% if not loop.last %}, {% endif %}
+                            {% endfor %})
+                        </div>
+                    </td>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if type == 1 or type == 3 %}
+                    <td>
+                        <div class="title font-weight-stone-600 grey-text">Message</div>
+                        <div class="content text-primary font-weight-stone-600">{{ demand.comments }}</div>
+                    </td>
+                {% endif %}
+
+                {% if type == 1 or type == 2 %}
+                    <td>
+                        <div class="title font-weight-stone-600 grey-text">Date de naissance</div>
+                        <div class="content text-primary font-weight-stone-600">{{ demand.birthDay|date('d/m/Y') }}</div>
+                    </td>
+                {% endif %}
+
+                {% if type == 1 %}
+                    <td>
+                        <div class="title font-weight-stone-600 grey-text">Ville de naissance</div>
+                        <div class="content text-primary font-weight-stone-600">{{ demand.cityOfBirth }}</div>
+                    </td>
+                {% endif %}
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Envoyer le</div>
+                    <div class="content text-primary font-weight-stone-600">{{ demand.createdAt|date('d/m/Y H:i:s') }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Traiter</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if demand.enabled %}
+                            <span class="badge badge-success">
+                                    <i class="fas fa-check mr-1"></i> Oui
+                                </span>
+                        {% else %}
+                            <span class="badge badge-danger">
+                                    <i class="fas fa-times mr-1"></i> Non
+                                </span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-end mt-4">
+            {% if type == 1 %}
+                {% set path = path('app_admin_demand_mail_index') %}
+            {% elseif type == 2 %}
+                {% set path = path('app_admin_demand_phone_index') %}
+            {% else %}
+                {% set path = path('app_admin_demand_home_index') %}
+            {% endif %}
+
+            <div class="text-center mr-3">{{ buttons.default(path, 'Retour à la liste', 'app-entity-list-btn', 'fas fa-angle-left', 'btn-outline-primary') }}</div>
+        </div>
+    </div>
+</div>
+
+

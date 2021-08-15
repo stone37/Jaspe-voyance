@@ -1,0 +1,37 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block app_navbar_first %}
+    {% include 'admin/menu/sidebar.html.twig' %}
+
+    {% include 'admin/menu/top.html.twig' %}
+{% endblock %}
+
+{% block app_navbar_second %}{% endblock %}
+
+{% block app_footer %}
+    {#<footer class="page-footer pt-0 mt-5 stone">
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid font-weight-normal">
+                © 2020 Copyright: <a href="{{ path('app_home') }}" target="_blank">
+                    {% if config.get.name is defined %}
+                        {{ config.get.name }}
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </footer>#}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/admin/admin.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/admin/admin.js'} %}
+{% endblock %}

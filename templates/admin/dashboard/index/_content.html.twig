@@ -1,0 +1,197 @@
+<div class="row">
+    {% if settings.activeVoyance %}
+        <div class="col-lg-3 col-md-6 col-12 mb-4">
+            <div class="card">
+                <div class="row mt-3">
+                    <div class="col-md-5 col-5 text-left pl-4">
+                        <a type="button" class="btn-floating btn-lg primary-color ml-4"><i class="fas fa-handshake" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-7 col-7 text-right pr-5">
+                        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">{{ meets }}</h5>
+                        <p class="font-small grey-text">Demandes de consulation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if settings.activeRencontre %}
+        <div class="col-lg-3 col-md-6 col-12 mb-4">
+            <div class="card">
+                <div class="row mt-3">
+                    <div class="col-md-5 col-5 text-left pl-4">
+                        <a type="button" class="btn-floating btn-lg red accent-2 ml-4"><i class="fas fa-heart" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-7 col-7 text-right pr-5">
+                        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">{{ events }}</h5>
+                        <p class="font-small grey-text">Rencontre à venir</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if settings.activeShop %}
+        <div class="col-lg-3 col-md-6 col-12 mb-4">
+            <div class="card">
+                <div class="row mt-3">
+                    <div class="col-md-5 col-5 text-left pl-4">
+                        <a type="button" class="btn-floating btn-lg success-color-dark ml-4"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-7 col-7 text-right pr-5">
+                        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">{{ orders }}</h5>
+                        <p class="font-small grey-text">Commande payée</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="col-lg-3 col-md-6 col-12 mb-4">
+        <div class="card">
+            <div class="row mt-3">
+                <div class="col-md-5 col-5 text-left pl-4">
+                    <a type="button" class="btn-floating btn-lg secondary-color ml-4"><i class="fas fa-users" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-md-7 col-7 text-right pr-5">
+                    <h5 class="ml-4 mt-4 mb-2 font-weight-bold">{{ users }}</h5>
+                    <p class="font-small grey-text">Utilisateur(s)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4 mb-2">
+    {% if settings.activeShop %}
+        <div class="col-12 col-md-4 col-lg-3 mb-2">
+            <a href="{{ path('app_admin_product_index') }}" class="btn btn-outline-grey-dark btn-block">
+                <i class="fas fa-cube mr-2"></i> Produits
+            </a>
+        </div>
+    {% endif %}
+
+    {% if settings.activeShop %}
+        <div class="col-12 col-md-4 col-lg-3 mb-2">
+            <a href="{{ path('app_admin_order_index') }}" class="btn btn-outline-grey-dark btn-block">
+                <i class="fas fa-shopping-cart mr-2"></i> Commandes
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="col-12 col-md-4 col-lg-3 mb-2">
+        <a href="{{ path('app_admin_user_index') }}" class="btn btn-outline-grey-dark btn-block">
+            <i class="fas fa-users mr-2"></i> Clients
+        </a>
+    </div>
+
+    {% if settings.activeRencontre %}
+        <div class="col-12 col-md-4 col-lg-3 mb-2">
+            <a href="{{ path('app_admin_event_index') }}" class="btn btn-outline-grey-dark btn-block">
+                <i class="fas fa-heart mr-2"></i> Evénements
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="row my-4">
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title h4-responsive text-center text-primary">Nouveaux utilisateurs</h4>
+
+                <div class="">
+                    {% if lastClients|length > 0 %}
+                        <ul class="list-group list-group-flush px-0">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="font-weight-600 grey-text">
+                                    Nom
+                                </div>
+                                <div class=""></div>
+                            </li>
+
+                            {% for user in lastClients %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <div class="">{{ user }}</div>
+                                        <div class="small grey-text font-weight-500">{{ user.email }}</div>
+                                    </div>
+                                    <div class="">
+                                        <a href="{{ path('app_admin_user_show', {'id': user.id, 'type': 1}) }}" class="btn btn-grey btn-sm">
+                                            <i class="fas fa-eye mr-1"></i> Lister
+                                        </a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="text-secondary text-center mt-4 mb-3">Aucun client pour le moment</div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% if settings.activeShop %}
+        <div class="col-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title h4-responsive text-primary text-center">Nouvelles commandes</h4>
+
+                    {% if lastOrders|length > 0 %}
+                        <table class="table table-responsive-md btn-table">
+                            <thead>
+                            <tr>
+                                <th class="font-weight-600 grey-text">Commande</th>
+                                <th class="font-weight-600 grey-text">Produits</th>
+                                <th class="font-weight-600 grey-text">Total</th>
+                                <th class="font-weight-600 grey-text"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in lastOrders %}
+                                <tr>
+                                    <th scope="row">
+                                        <div class="">{{ order.user }}</div>
+                                        <div class="small grey-text font-weight-500">{{ order.user.email }}</div>
+                                    </th>
+                                    <td>{{ order.items|length }}</td>
+                                    <td>{{ order.priceTotal }} €</td>
+                                    <td>
+                                        <a href="{{ path('app_admin_order_show', {'id': order.id}) }}" class="btn btn-grey btn-sm m-0">
+                                            <i class="fas fa-eye mr-1"></i> Lister
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <div class="text-secondary text-center mt-4 mb-3">Aucune commande pour le moment</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+<div class="row mt-5">
+    {% if settings.activeTemoignages %}
+        <div class="col-md-6 col-12 mb-4">
+            <div class="card text-center mb-4 pt-4 pb-3 default-color-dark white-text">
+                <i class="fas fa-comments fa-3x mb-3"></i>
+                <h4 class="h4-responsive white-text">{{ reviews }} Temoignage(s)</h4>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="col-md-6 col-12 mb-4">
+        <div class="card text-center mb-4 pt-4 pb-3 stylish-color white-text">
+            <i class="fas fa-user-secret fa-3x mb-3"></i>
+            <h4 class="h4-responsive white-text">{{ admins }} administrateur(s)</h4>
+        </div>
+    </div>
+</div>
+

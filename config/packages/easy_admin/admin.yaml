@@ -1,0 +1,37 @@
+easy_admin:
+    entities:
+        Admin:
+            label: 'Administrateurs'
+            class: App\Entity\Admin
+            form:
+                fields:
+                    - { property: name, label: 'Nom et prénom', type: text, type_options: { trim: true } }
+                    - { property: email, label: 'Email', type: text, type_options: { trim: true } }
+                    - { property: phone, label: 'Téléphone', type: text, type_options: { trim: true } }
+                    - { property: civilite, label: 'Civilité', type: choice,
+                        type_options: { choices: {Femme: Femme, Homme: Homme} } }
+                    - { property: 'plainPassword', label: 'Mot de passe', type: 'repeated',
+                        type_options: { first_options: {'label': 'Mot de passe'}, second_options: {'label': 'Répeter de mot de passe'} } }
+                    - { property: 'enabled', label: 'Activer' }
+                    - { property: 'file', type: 'vich_image', label: 'Avatar' }
+            list:
+                title: 'Les administrateurs'
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                actions:
+                    - '-search'
+                    - '-show'
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'name', label: 'Nom et prénom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'phone', label: 'Téléphone' }
+                    - { property: 'civilite', label: 'Civilité' }
+                search:
+                    sort: ['createdAt', 'desc']
+            new:
+                title: 'Nouveau administrateur'
+            edit:
+                title: 'Edition d''un administrateur'
+
+

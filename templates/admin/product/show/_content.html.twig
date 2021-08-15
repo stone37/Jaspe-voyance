@@ -1,0 +1,80 @@
+{% import 'Ui/Macro/buttons.html.twig' as buttons %}
+
+<div class="row app-user">
+    <div class="col-12">
+        <table class="table table-borderless table-responsive-sm table-responsive-md">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Id</div>
+                    <div class="content text-primary font-weight-stone-600">{{ product.id }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Nom</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {{ product.name }}
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Prix</div>
+                    <div class="content text-primary font-weight-stone-600">€{{ product.price|number_format(2, '.', ',') }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Description</div>
+                    <div class="content text-primary font-weight-stone-600">{{ product.description|truncate(40) }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Tva</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        <a href="{{ path('app_admin_tax_index') }}" class="">{{ product.tva }}</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Image</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        <img src="{{ vich_uploader_asset(product, 'file') }}" alt=""
+                             class="img-fluid img-thumbnail" id="image-view" style="width: 140px;" />
+                    </div>
+                </td>
+
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Date de creation</div>
+                    <div class="content text-primary font-weight-stone-600">{{ product.createdAt|date('d/m/Y H:i:s') }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Dernière modification</div>
+                    <div class="content text-primary font-weight-stone-600">{{ product.updatedAt|date('d/m/Y H:i:s') }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Status</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if product.enabled %}
+                            <span class="badge badge-success">
+                                    <i class="fas fa-check mr-1"></i> Actif
+                                </span>
+                        {% else %}
+                            <span class="badge badge-danger">
+                                    <i class="fas fa-times mr-1"></i> Inactif
+                                </span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-end mt-4">
+            {% set path = path('app_admin_product_index') %}
+
+            <div class="text-center mr-3">{{ buttons.default(path, 'Retour à la liste', 'app-entity-list-btn', 'fas fa-angle-left', 'btn-outline-primary') }}</div>
+        </div>
+    </div>
+</div>
+
+

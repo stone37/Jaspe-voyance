@@ -1,0 +1,12 @@
+app_dashboard:
+    resource: "../Resources/Config/routing/user/dashboard.yaml"
+
+app_dashboard_order:
+    resource: "../Resources/Config/routing/user/order.yaml"
+
+app_user:
+    resource: "../Resources/Config/routing/user/user.yaml"
+
+
+
+

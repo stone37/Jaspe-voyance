@@ -1,0 +1,451 @@
+{% extends 'base.html.twig' %}
+
+{% set settings = config.get %}
+
+{% block title %}{{ sonata_seo_title() }}{% endblock %}
+
+{% block app_navbar_first %}
+    
+    {% set home = isActive('app_home') %}
+
+    {% set v = isActive('app_voyance_index') %}
+    {% set v_cabinet = isActive('app_voyance_cabinet') %}
+    {% set v_mail = isActive('app_voyance_mail') %}
+    {% set v_phone = isActive('app_voyance_phone') %}
+    {% set v_cabinet_rdv = isActive('app_voyance_cabinet_contact') %}
+    {% set v_mail_rdv = isActive('app_voyance_mail_contact') %}
+    {% set v_phone_rdv = isActive('app_voyance_phone_contact') %}
+
+    {% set soins = isActive('app_soins_index') %}
+    {% set soins_rdv = isActive('app_soins_contact') %}
+
+    {% set review = isActive('app_review_index') %}
+
+    {% set e_index = isActive('app_event_index') %}
+    {% set e_show = isActive('app_event_show') %}
+
+    {% set p_index = isActive('app_product_index') %}
+    {% set p_show = isActive('app_product_show') %}
+
+    {% set a_index = isActive('app_post_index') %}
+    {% set a_show = isActive('app_post_show') %}
+
+    {% if not is_mobile() %}
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="position: absolute !important;">
+            <div class="container-fluid container-lg">
+                <a class="navbar-brand" href="{{ path('app_home') }}" >
+                    <img src="{{ vich_uploader_asset(settings, 'file') }}" alt="Logo du site" class="img-fluid logo"/>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li>
+                            <div class="d-flex justify-content-end">
+                                {% if settings.phone is defined %}
+                                    <a href="tel:+33 {{ settings.phone }}"
+                                       class="nav-link font-weight-bold text-secondary mr-2 small app-phone border-secondary"
+                                       data-toggle="tooltip" title="Service client" data-placement="left">
+                                        <span><i class="fas fa-phone-alt mr-2"></i> {{ settings.phone }}</span>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.facebookAddress %}
+                                    <a href="{{ settings.facebookAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="facebook" data-placement="left">
+                                        <i class="fab fa-facebook-f fb-ic"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.twitterAddress %}
+                                    <a href="{{ settings.twitterAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Twitter" data-placement="left">
+                                        <i class="fab fa-twitter tw-ic"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.youtubeAddress %}
+                                    <a href="{{ settings.youtubeAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Youtube" data-placement="left">
+                                        <i class="fab fa-youtube yt-ic"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.instagramAddress %}
+                                    <a href="{{ settings.instagramAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Instagram" data-placement="left">
+                                        <i class="fab fa-instagram" style="color: #bc2a8d"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.linkedinAddress %}
+                                    <a href="{{ settings.linkedinAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Linkedin" data-placement="left">
+                                        <i class="fab fa-linkedin li-ic"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex justify-content-end my-2">
+                                <ul class="navbar-nav ml-auto">
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        {{ render(controller('App\\Controller\\MenuController::dropdownMenu')) }}
+                                    {% else %}
+                                        {% if app.session.has('app_cart') %}
+                                            <li class="nav-item app-user-menu-dropdown mr-lg-3">
+                                                <a href="{{ path('app_cart_index') }}" class="nav-link" data-toggle="tooltip" title="Votre panier">
+                                                    <span class="badge badge-secondary"
+                                                          style="position: relative; left: 5px; bottom: 2px;">{{ app.session.get('app_cart')|length }}</span>
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+                                        <li class="nav-item pl-2 mb-2 mb-md-0">
+                                            <a href="{{ path('fos_user_registration_register') }}" type="button"
+                                               class="btn btn-primary user-btn btn-md waves-effect waves-light ml-2">S'inscrire</a>
+                                        </li>
+                                        <li class="nav-item pl-2 mb-2 mb-md-0">
+                                            <a href="{{ path('fos_user_security_login') }}" type="button"
+                                               class="btn btn-secondary user-btn btn-md waves-effect waves-light ml-2">Se connecter</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark scrolling-navbar second py-0" style="position: absolute !important;">
+            <div class="container-fluid container-lg mx-0 px-0">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {% if home %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('app_home') }}"> Accueil
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        {% if settings.activeVoyance
+                            and (settings.activePhoneV or settings.activeMailV or settings.activeCabinetV) %}
+                            <li class="nav-item voyance dropdown dropdown-hover
+                            {% if v or v_cabinet or v_mail or v_phone or v_cabinet_rdv or
+                                v_mail_rdv or v_phone_rdv %}active{% endif %}">
+                                <a class="nav-link dropdown-toggle" id="voyanceMenu" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Voyances</a>
+                                <div class="dropdown-menu dropdown-primary" aria-labelledby="voyanceMenu">
+                                    {% if settings.activeCabinetV %}
+                                        <a class="dropdown-item {% if v_cabinet or v_cabinet_rdv %}active{% endif %}" href="{{ path('app_voyance_cabinet') }}">Voyance en cabinet</a>
+                                    {% endif %}
+
+                                    {% if settings.activeMailV %}
+                                        <a class="dropdown-item {% if v_mail or v_mail_rdv %}active{% endif %}" href="{{ path('app_voyance_mail') }}">Voyance par mail</a>
+                                    {% endif %}
+
+                                    {% if settings.activePhoneV %}
+                                        <a class="dropdown-item {% if v_phone or v_phone_rdv %}active{% endif %}" href="{{ path('app_voyance_phone') }}">Voyance par téléphone</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.activeSoins %}
+                            <li class="nav-item {% if soins or soins_rdv %}active{% endif %}">
+                                <a class="nav-link" href="{{ path('app_soins_index') }}">Soins énergétiques</a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.activeRencontre %}
+                            <li class="nav-item review {% if e_index or e_show %}active{% endif %}">
+                                <a class="nav-link" href="{{ path('app_event_index') }}">Rencontres</a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.activeTemoignages %}
+                            <li class="nav-item review dropdown dropdown-hover dropdown-menu-lg-left {% if review %}active{% endif %}">
+                                <a class="nav-link dropdown-toggle" id="temoignageMenu" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Témoignoges</a>
+                                <div class="dropdown-menu dropdown-primary" aria-labelledby="temoignageMenu">
+                                    <a class="dropdown-item" href="{{ path('app_review_index') }}">Voir les témoignages</a>
+                                    <a class="dropdown-item" href="{{ path('app_review_index') }}#form">Déposer un témoignages</a>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.activeShop %}
+                            <li class="nav-item {% if p_index or p_show %}active{% endif %}">
+                                <a class="nav-link" href="{{ path('app_product_index') }}">Nos produits</a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.activeBlog %}
+                            <li class="nav-item {% if a_index or a_show %}active{% endif %}">
+                                <a class="nav-link px-lg-4" href="{{ path('app_post_index') }}">Actualités</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% else %}
+        {# Mobile #}
+        <nav class="navbar px-0 navbar-expand-md navbar-dark fixed-top pt-2"
+             style="position: absolute !important; padding-top: 3px;">
+            <div class="container-fluid d-block d-md-flex mb-md-2">
+                <div class="text-center">
+                    <a class="" href="{{ path('app_home') }}">
+                        <img src="{{ vich_uploader_asset(settings, 'file') }}" alt="Logo du site" class="img-fluid logo"/>
+                    </a>
+                </div>
+
+                <div {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}class="d-none d-md-flex"{% endif %}>
+                    <div class="d-flex justify-content-center align-items-center py-2 py-md-1">
+                        {% if settings.phone is defined %}
+                            <a href="tel:+33 {{ settings.phone }}"
+                               class="nav-link font-weight-bold text-secondary mr-2 small app-phone
+                                    border-secondary d-none d-md-inline-block"
+                               data-toggle="tooltip" title="Service client" data-placement="left">
+                                <span><i class="fas fa-phone-alt mr-2"></i> {{ settings.phone }}</span>
+                            </a>
+                        {% endif %}
+
+                        {% if settings.facebookAddress %}
+                            <a href="{{ settings.facebookAddress }}" class="px-1"
+                               target="_blank"
+                               data-toggle="tooltip" title="facebook" data-placement="left">
+                                <i class="fab fa-facebook-f fb-ic"></i>
+                            </a>
+                        {% endif %}
+
+                        {% if settings.twitterAddress %}
+                            <a href="{{ settings.twitterAddress }}" class="px-1" target="_blank"
+                               data-toggle="tooltip" title="Twitter" data-placement="left">
+                                <i class="fab fa-twitter tw-ic"></i>
+                            </a>
+                        {% endif %}
+
+                        {% if settings.youtubeAddress %}
+                            <a href="{{ settings.youtubeAddress }}" class="px-1" target="_blank"
+                               data-toggle="tooltip" title="Youtube" data-placement="left">
+                                <i class="fab fa-youtube yt-ic"></i>
+                            </a>
+                        {% endif %}
+
+                        {% if settings.instagramAddress %}
+                            <a href="{{ settings.instagramAddress }}" class="px-1" target="_blank"
+                               data-toggle="tooltip" title="Instagram" data-placement="left">
+                                <i class="fab fa-instagram" style="color: #bc2a8d"></i>
+                            </a>
+                        {% endif %}
+
+                        {% if settings.linkedinAddress %}
+                            <a href="{{ settings.linkedinAddress }}" class="px-1" target="_blank"
+                               data-toggle="tooltip" title="Linkedin" data-placement="left">
+                                <i class="fab fa-linkedin li-ic"></i>
+                            </a>
+                        {% endif %}
+
+                        <div class="pl-md-2 d-none d-md-flex">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ render(controller('App\\Controller\\MenuController::dropdownMenu')) }}
+                            {% else %}
+                                <a href="{{ path('fos_user_registration_register') }}" type="button"
+                                   class="btn btn-primary user-btn btn-md waves-effect waves-light">S'inscrire</a>
+                                <a href="{{ path('fos_user_security_login') }}" type="button"
+                                   class="btn btn-secondary user-btn btn-md waves-effect waves-light ml-2">Se connecter</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="d-block d-md-none px-2 mb-2 mt-1 text-right">
+                        <div class="font-weight-600 small-9">Bonjour, {{ app.user.firstName }}</div>
+                        <div class="font-weight-600 mt-2">
+                            {% if not is_granted("ROLE_ADMIN") %}
+                                <a class="dark-grey-text" href="" data-toggle="tooltip" title="Votre panier">
+                                    <span class="badge badge-secondary" style="position: relative; left: 4px; bottom: 4px;">0</span>
+                                    <i class="fas fa-shopping-cart mr-3" style="font-size: 1.3rem;"></i>
+                                </a>
+                                <a class="dark-grey-text" href="{{ path('app_dashboard_index') }}" data-toggle="tooltip" title="Tableau bord">
+                                    <i class="fas fa-th-large mr-3" style="font-size: 1.2rem;"></i>
+                                </a>
+                            {% endif %}
+
+                            <a class="dark-grey-text" href="{{ path('fos_user_security_logout') }}" data-toggle="tooltip" title="Déconnexion">
+                                <i class="fas fa-sign-in-alt mr-2" style="font-size: 1.35rem;"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="d-block d-md-none px-1">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ render(controller('App\\Controller\\MenuController::dropdownMenu')) }}
+                    {% else %}
+                        <a href="{{ path('fos_user_registration_register') }}" type="button"
+                           class="btn btn-primary btn-sm btn-block waves-effect waves-light mb-2">S'inscrire</a>
+                        <a href="{{ path('fos_user_security_login') }}" type="button"
+                           class="btn btn-secondary btn-sm btn-block waves-effect waves-light">Se connecter</a>
+                    {% endif %}
+                </div>
+
+
+
+
+                {#
+                <a class="navbar-brand" href="{{ path('app_home') }}">
+                    <img src="{{ vich_uploader_asset(settings, 'file') }}" alt="Logo du site" class="img-fluid logo"/>
+                </a>
+                <div class="border w-100">
+                    <ul class="navbar-nav ml-md-auto">
+                        <li>
+                            <div class="d-flex justify-content-end ">
+                                {% if settings.phone is defined %}
+                                    <a href="tel:+33 {{ settings.phone }}"
+                                       class="nav-link font-weight-bold text-secondary mr-2 small app-phone
+                                        border-secondary d-none d-md-inline-block"
+                                       data-toggle="tooltip" title="Service client" data-placement="left">
+                                        <span>
+                                            <i class="fas fa-phone-alt mr-2"></i> {{ settings.phone }}
+                                        </span>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.facebookAddress %}
+                                    <a href="{{ settings.facebookAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="facebook" data-placement="left">
+                                        <i class="fab fa-facebook-f fb-ic"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.twitterAddress %}
+                                    <a href="{{ settings.twitterAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Twitter" data-placement="left">
+                                        <i class="fab fa-twitter tw-ic"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.youtubeAddress %}
+                                    <a href="{{ settings.youtubeAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Youtube" data-placement="left">
+                                        <i class="fab fa-youtube yt-ic"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.instagramAddress %}
+                                    <a href="{{ settings.instagramAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Instagram" data-placement="left">
+                                        <i class="fab fa-instagram" style="color: #bc2a8d"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if settings.linkedinAddress %}
+                                    <a href="{{ settings.linkedinAddress }}" class="nav-link" target="_blank"
+                                       data-toggle="tooltip" title="Linkedin" data-placement="left">
+                                        <i class="fab fa-linkedin li-ic"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex justify-content-end align-items-center my-md-2">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+
+                                        {{ render(controller('App\\Controller\\MenuController::dropdownMenu')) }}
+                                {% else %}
+                                    <a href="{{ path('fos_user_registration_register') }}" type="button"
+                                       class="btn btn-primary user-btn btn-md waves-effect waves-light">S'inscrire</a>
+                                    <a href="{{ path('fos_user_security_login') }}" type="button"
+                                       class="btn btn-secondary user-btn btn-md waves-effect waves-light ml-2">Se connecter</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>#}
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-md navbar-dark second px-0">
+            <button class="navbar-toggler bg-primary px-2 mt-4" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-md-auto px-0">
+                    <li class="nav-item {% if home %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('app_home') }}">Accueil
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    {% if settings.activeVoyance
+                        and (settings.activePhoneV or settings.activeMailV or settings.activeCabinetV) %}
+                        <li class="nav-item voyance dropdown dropdown-hover
+                        {% if v or v_cabinet or v_mail or v_phone or v_cabinet_rdv or
+                            v_mail_rdv or v_phone_rdv %}active{% endif %}">
+                            <a class="nav-link dropdown-toggle" id="voyanceMenu2" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">Voyances</a>
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="voyanceMenu2">
+                                {% if settings.activeCabinetV %}
+                                    <a class="dropdown-item {% if v_cabinet or v_cabinet_rdv %}active{% endif %}" href="{{ path('app_voyance_cabinet') }}">Voyance en cabinet</a>
+                                {% endif %}
+
+                                {% if settings.activeMailV %}
+                                    <a class="dropdown-item {% if v_mail or v_mail_rdv %}active{% endif %}" href="{{ path('app_voyance_mail') }}">Voyance par mail</a>
+                                {% endif %}
+
+                                {% if settings.activePhoneV %}
+                                    <a class="dropdown-item {% if v_phone or v_phone_rdv %}active{% endif %}" href="{{ path('app_voyance_phone') }}">Voyance par téléphone</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endif %}
+
+                    {% if settings.activeSoins %}
+                        <li class="nav-item {% if soins or soins_rdv %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('app_soins_index') }}">Soins énergétiques</a>
+                        </li>
+                    {% endif %}
+
+                    {% if settings.activeRencontre %}
+                        <li class="nav-item {% if e_index or e_show %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('app_event_index') }}">Rencontres</a>
+                        </li>
+                    {% endif %}
+
+                    {% if settings.activeTemoignages %}
+                        <li class="nav-item review dropdown dropdown-hover dropdown-menu-lg-left {% if review %}active{% endif %}">
+                            <a class="nav-link dropdown-toggle" id="temoignageMenu2" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">Témoignoges</a>
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="temoignageMenu2">
+                                <a class="dropdown-item" href="{{ path('app_review_index') }}">Voir les témoignages</a>
+                                <a class="dropdown-item" href="{{ path('app_review_index') }}#form">Déposer un témoignages</a>
+                            </div>
+                        </li>
+                    {% endif %}
+
+                    {% if settings.activeShop %}
+                        <li class="nav-item {% if p_index or p_show %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('app_product_index') }}">Nos produits</a>
+                        </li>
+                    {% endif %}
+
+                    {% if settings.activeBlog %}
+                        <li class="nav-item {% if a_index or a_show %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('app_post_index') }}">Actualités</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {# Mobile #}
+    {% endif %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/site.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

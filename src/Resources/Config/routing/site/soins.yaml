@@ -1,0 +1,10 @@
+app_soins_index:
+    path: /soins-energetique/
+    methods: [GET, POST]
+    controller: App\Controller\SoinsController::index
+
+app_soins_contact:
+    path: /soinsenergetique/rendezvous/
+    methods: [GET, POST]
+    controller: App\Controller\SoinsController::soinsContact
+

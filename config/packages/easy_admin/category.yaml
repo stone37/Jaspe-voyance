@@ -1,0 +1,31 @@
+easy_admin:
+    entities:
+        Category:
+            label: 'Catégories'
+            class: App\Entity\Category
+            form:
+                fields:
+                    - { property: name, label: 'Nom', type: text, type_options: { trim: true } }
+                    - { property: description, label: 'Description', type: textarea }
+            list:
+                title: 'Liste des catégories'
+                collapse_actions: false
+                max_results: 25
+                actions:
+                    - '-search'
+                    - '-show'
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Editer' }
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: 'name', label: 'Nom', type: string }
+                    - { property: 'description', label: 'Description', type: text }
+                    - { property: 'slug', label: 'slug', type: string }
+            new:
+                title: 'Nouvelle catégorie'
+            edit:
+                title: 'Edition d''une catégorie'
+                actions:
+                    - '-delete'
+
+
+

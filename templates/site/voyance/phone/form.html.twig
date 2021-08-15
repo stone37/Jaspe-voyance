@@ -1,0 +1,87 @@
+<div class="form-row mt-3">
+    <div class="col-12">
+        <div class="h5-responsive border d-inline-block border-secondary border-top-0 border-left-0 border-right-0">
+            <div class="badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">1</div>
+            <div class="text-secondary d-inline-block font-weight-600">Coordonnées</div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row mb-4">
+    <div class="col-12 col-md-6">
+        {{ form_row(form.lastName) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.firstName) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.email) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.phone) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.birthDay) }}
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col-12">
+        <div class="h5-responsive border d-inline-block border-secondary border-top-0 border-left-0 border-right-0">
+            <div class="badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">2</div>
+            <div class="text-secondary d-inline-block font-weight-600">Disponibilités</div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row my-3">
+    <div class="col-12">
+        <div class="dark-grey-text font-weight-600">Disponibilités en semaine</div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div>
+            <div>
+                {{ form_widget(form.daysWeek) }}
+                <label class=" ml-3">{{ form.daysWeek.vars.label|raw }}</label>
+            </div>
+            <div style="margin-top: -15px;" class="red-text font-weight-stone-500">{{ form_errors(form.daysWeek) }}</div>
+        </div>
+    </div>
+</div>
+<div class="form-row my-3">
+    <div class="col-12">
+        <div class="dark-grey-text font-weight-600">Disponibilités en journée</div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div>
+            <div>
+                {{ form_widget(form.timeDay) }}
+                <label class=" ml-3">{{ form.timeDay.vars.label|raw }}</label>
+            </div>
+            <div style="margin-top: -15px;" class="red-text font-weight-stone-500">{{ form_errors(form.timeDay) }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col-12">
+        {{ form_row(form.recaptchaToken) }}
+    </div>
+    <div class="col-12">
+        <p class="text-secondary font-weight-600">
+            On vous contacterai au plus vite pour définir avec vous le jour et l'heure de votre consultation.
+        </p>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+{% extends 'site/layout.html.twig' %}
+
+{% block title %}<title>Votre panier | {{ config.get.name }}</title>{% endblock %}
+
+{% block app_cart %}{% endblock %}
+{% block seo %}{% endblock %}
+{% block app_navbar_three %}{% endblock %}
+{% block app_navbar_second %}{% endblock %}
+
+{% block app_body %}
+    <section class="mt-md-90 mb-5 px-0 px-lg-2">
+        <div class="container-lg container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bc text-white mb-1">
+                        <div class="mt-lg-4">
+                            {{ wo_render_breadcrumbs({ viewTemplate: '_breadcrumb.html.twig', listClass: 'breadcrumb',
+                                itemClass: 'breadcrumb-item', separator: '>', separatorClass: 'fas fa-angle-right'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="h2-responsive text-primary font-weight-600 text-center">Votre panier</h2>
+                </div>
+            </div>
+
+            {% include 'site/cart/index/content.html.twig' %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/page.css'} %}
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/user.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% if banners|length > 0 %}
+    <div class="row px-0">
+        {% for banner in banners %}
+            <div class="col-12 mb-4">
+                <a href="">
+                    <div class="card card-image text-center px-3 d-flex justify-content-end
+                         align-items-center app-banner-bulk"
+                         style="background-image: url({{ vich_uploader_asset(banner, 'file') }}); width: auto;">
+                        <div class="mb-4">
+                            <a href="{{ banner.link }}" class="{{ banner.btnStyle }}">
+                                <i class="fas fa-paper-plane left"></i> {{ banner.btnTitle }}
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+

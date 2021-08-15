@@ -1,0 +1,5 @@
+app_user_acompte_delete:
+    path: /fermeture-du-compte/
+    methods: [GET, POST]
+    controller: App\Controller\UserController::deleted
+

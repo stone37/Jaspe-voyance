@@ -1,0 +1,61 @@
+<section class="my-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-lg-10">
+            <table class="table table-responsive-sm">
+                <thead class="text-primary">
+                    <tr>
+                        <th scope="col" class="font-weight-stone-500 text-center">Références</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Quantité</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Prix unitaire</th>
+                        <th scope="col" class="font-weight-stone-500 text-center">Total HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">Demande de consultation voyance par mail</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">€{{ order.priceTotal|number_format(2, '.', ',') }}</td>
+                        <td class="text-center">
+                            €{{ order.priceTotalTva|number_format(2, '.', ',') }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-right">
+                            <div class="mb-2">
+                                Total HT <span class="font-weight-600 ml-2">€{{ order.priceTotal|number_format(2, '.', ',') }}</span>
+                            </div>
+
+                            <div class="mb-2">
+                                Total TTC <span class="font-weight-600 ml-2 h5-responsive">€{{ order.priceTotalTva|number_format(2, '.', ',') }}</span>
+                            </div>
+                        </td>
+                    </tr>
+                <tr>
+                    <td class="text-left"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-right">
+                        <form action="{{ path('app_order_demand_validate', {'id': order.id}) }}" method="POST">
+                            <button type="submit" class="btn btn-blue btn-block pull-right" >
+                                <span class="d-inline-block" style="margin-bottom: 3px;">
+                                    Payer avec <span class="d-inline-block font-weight-600 h4-responsive">Paypal</span>
+                                </span>
+                            </button>
+                        </form>
+
+                        <div class="mt-4">
+                            <a href="{{ path('app_voyance_mail_contact') }}" class="btn btn-block btn-outline-primary btn-sm ">
+                                <i class="fas fa-angle-left mr-1"></i> Retour
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

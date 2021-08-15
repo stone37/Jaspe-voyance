@@ -1,0 +1,14 @@
+app_post_index:
+    path: /actualites/
+    methods: [GET, POST]
+    controller: App\Controller\PostController::index
+
+app_post_show:
+    path: /actualites/{slug}/
+    methods: [GET, POST]
+    controller: App\Controller\PostController::show
+
+app_post_category:
+    path: /actualites/categories/{slug}/
+    methods: [GET]
+    controller: App\Controller\PostController::byCategory

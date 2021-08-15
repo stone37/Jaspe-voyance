@@ -1,0 +1,258 @@
+<div class="form-row">
+    <div class="col-12">
+        <div class="border border-secondary border-top-0 border-left-0 border-right-0">
+            <h4 class="badge badge-secondary h4-responsive d-inline-block mr-1" style="position: relative; bottom: 6px;">1</h4>
+            <h4 class="text-secondary h4-responsive d-inline-block font-weight-stone-600">Module de voyance</h4>
+        </div>
+    </div>
+</div>
+<div class="form-row mt-3">
+    <div class="col-12 col-md-4 mb-3">
+        <div class="grey-text pb-1">{{ form.activeVoyance.vars.label|trans }}</div>
+        <div class="switch stone-switch mt-1 ml-md-2">
+            <label>
+                Non
+                <input type="checkbox" name="{{ form.activeVoyance.vars.full_name }}" id="{{ form.activeVoyance.vars.id }}"
+                       value="{{ form.activeVoyance.vars.value }}" {% if form.activeVoyance.vars.checked %}checked="checked{% endif %}">
+                <span class="lever"></span>
+                Oui
+            </label>
+        </div>
+    </div>
+    <div class="col-12">
+        <div id="app-setting-voyance-block" class="form-row app-setting-voyance-block px-0 {% if settings.activeVoyance %}active{% endif %}">
+
+            <div class="col-12 mb-5 mt-3">
+                <div class="form-row">
+                    <div class="col-12">
+                        <h5 class="font-weight-600 text-primary mb-2 h5-responsive">Configuration du service de voyance en cabinet</h5>
+                        <div class="grey-text pb-1">{{ form.activeCabinetV.vars.label|trans }}</div>
+                        <div class="switch stone-switch mt-1 ml-md-2">
+                            <label>
+                                Non
+                                <input type="checkbox" name="{{ form.activeCabinetV.vars.full_name }}" id="{{ form.activeCabinetV.vars.id }}"
+                                       value="{{ form.activeCabinetV.vars.value }}" {% if form.activeCabinetV.vars.checked %}checked="checked{% endif %}">
+                                <span class="lever"></span>
+                                Oui
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="app-setting-voyance-cabinet-block" class="form-row app-setting-voyance-cabinet-block {% if settings.activeCabinetV %}active{% endif %}">
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vCabinetTime) }}
+                        <small class="form-text text-muted" style="margin-top: -4px">
+                            Indiquer en <span class="font-weight-600">minutes</span> la durée de chaque séance
+                        </small>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vCabinetPrice) }}
+                    </div>
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vCabinetRemise) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="form-row">
+                    <div class="col-12">
+                        <h5 class="h5-responsive font-weight-600 text-primary mb-2">Configuration du service de voyance par mail</h5>
+                        <div class="grey-text pb-1">{{ form.activeMailV.vars.label|trans }}</div>
+                        <div class="switch stone-switch mt-1 ml-md-2">
+                            <label>
+                                Non
+                                <input type="checkbox" name="{{ form.activeMailV.vars.full_name }}" id="{{ form.activeMailV.vars.id }}"
+                                       value="{{ form.activeMailV.vars.value }}" {% if form.activeMailV.vars.checked %}checked="checked{% endif %}">
+                                <span class="lever"></span>
+                                Oui
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="app-setting-voyance-mail-block" class="form-row app-setting-voyance-mail-block {% if settings.activeMailV %}active{% endif %}">
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vMailPrice) }}
+                    </div>
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vMailRemise) }}
+                    </div>
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vMailDelai) }}
+                        <small class="form-text text-muted" style="margin-top: -4px">
+                            Indiquer en <span class="font-weight-600">heures</span> le délai maximal de reponse au mail
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="form-row">
+                    <div class="col-12">
+                        <h5 class="font-weight-600 text-primary h5-responsive mb-2">Configuration du service de voyance par téléphone</h5>
+                        <div class="grey-text pb-1">{{ form.activePhoneV.vars.label|trans }}</div>
+                        <div class="switch stone-switch mt-1 ml-md-2">
+                            <label>
+                                Non
+                                <input type="checkbox" name="{{ form.activePhoneV.vars.full_name }}" id="{{ form.activePhoneV.vars.id }}"
+                                       value="{{ form.activePhoneV.vars.value }}" {% if form.activePhoneV.vars.checked %}checked="checked{% endif %}">
+                                <span class="lever"></span>
+                                Oui
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="app-setting-voyance-phone-block" class="form-row app-setting-voyance-phone-block {% if settings.activePhoneV %}active{% endif %}">
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vPhoneTime) }}
+                        <small class="form-text text-muted" style="margin-top: -4px">
+                            Indiquer en <span class="font-weight-600">minutes</span> la durée de chaque séance
+                        </small>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vPhonePrice) }}
+                    </div>
+                    <div class="col-12 col-md-4">
+                        {{ form_row(form.vPhoneRemise) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row mt-4">
+    <div class="col-12">
+        <div class="border border-secondary border-top-0 border-left-0 border-right-0">
+            <h4 class="h4-responsive badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">2</h4>
+            <h4 class="h4-responsive text-secondary d-inline-block font-weight-stone-600">Module de soins énergétique</h4>
+        </div>
+    </div>
+</div>
+<div class="form-row my-3">
+    <div class="col-12 col-md-4">
+        <div class="grey-text pb-1">{{ form.activeSoins.vars.label|trans }}</div>
+        <div class="switch stone-switch mt-1 ml-md-2">
+            <label>
+                Non
+                <input type="checkbox" name="{{ form.activeSoins.vars.full_name }}" id="{{ form.activeSoins.vars.id }}"
+                       value="{{ form.activeSoins.vars.value }}" {% if form.activeSoins.vars.checked %}checked="checked{% endif %}">
+                <span class="lever"></span>
+                Oui
+            </label>
+        </div>
+    </div>
+    <div class="col-12">
+        <div id="app-setting-soins-block" class="form-row mb-3 app-setting-soins-block {% if settings.activeSoins %}active{% endif %}">
+            <div class="col-12 col-md-4">
+                {{ form_row(form.soinsTime) }}
+                <small class="form-text text-muted" style="margin-top: -4px">
+                    Indiquer en <span class="font-weight-600">minutes</span> la durée de chaque séance
+                </small>
+            </div>
+            <div class="col-12 col-md-4">
+                {{ form_row(form.soinsPrice) }}
+            </div>
+            <div class="col-12 col-md-4">
+                {{ form_row(form.soinsRemise) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row mt-4">
+    <div class="col-12">
+        <div class="border border-secondary border-top-0 border-left-0 border-right-0">
+            <h4 class="h4-responsive badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">3</h4>
+            <h4 class="h4-responsive text-secondary d-inline-block font-weight-stone-600">Module de témoignage</h4>
+        </div>
+    </div>
+</div>
+<div class="form-row my-3">
+    <div class="col-12 col-md-4">
+        <div class="grey-text pb-1">{{ form.activeTemoignages.vars.label|trans }}</div>
+        <div class="switch stone-switch mt-1 ml-md-2">
+            <label>
+                Non
+                <input type="checkbox" name="{{ form.activeTemoignages.vars.full_name }}" id="{{ form.activeTemoignages.vars.id }}"
+                       value="{{ form.activeTemoignages.vars.value }}" {% if form.activeTemoignages.vars.checked %}checked="checked{% endif %}">
+                <span class="lever"></span>
+                Oui
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-row mt-4">
+    <div class="col-12">
+        <div class="border border-secondary border-top-0 border-left-0 border-right-0">
+            <h4 class="h4-responsive badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">4</h4>
+            <h4 class="h4-responsive text-secondary d-inline-block font-weight-stone-600">Module e-commerce</h4>
+        </div>
+    </div>
+</div>
+<div class="form-row my-3">
+    <div class="col-12 col-md-4">
+        <div class="grey-text pb-1">{{ form.activeShop.vars.label|trans }}</div>
+        <div class="switch stone-switch mt-1 ml-md-2">
+            <label>
+                Non
+                <input type="checkbox" name="{{ form.activeShop.vars.full_name }}" id="{{ form.activeShop.vars.id }}"
+                       value="{{ form.activeShop.vars.value }}" {% if form.activeShop.vars.checked %}checked="checked{% endif %}">
+                <span class="lever"></span>
+                Oui
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-row mt-4">
+    <div class="col-12">
+        <div class="border border-secondary border-top-0 border-left-0 border-right-0">
+            <h4 class="h4-responsive badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">5</h4>
+            <h4 class="h4-responsive text-secondary d-inline-block font-weight-stone-600">Module de blog</h4>
+        </div>
+    </div>
+</div>
+<div class="form-row my-3">
+    <div class="col-12 col-md-4">
+        <div class="grey-text pb-1">{{ form.activeBlog.vars.label|trans }}</div>
+        <div class="switch stone-switch mt-1 ml-md-2">
+            <label>
+                Non
+                <input type="checkbox" name="{{ form.activeBlog.vars.full_name }}" id="{{ form.activeBlog.vars.id }}"
+                       value="{{ form.activeBlog.vars.value }}" {% if form.activeBlog.vars.checked %}checked="checked{% endif %}">
+                <span class="lever"></span>
+                Oui
+            </label>
+        </div>
+    </div>
+    <div class="col-12">
+        <div id="app-setting-blog-block" class="form-row mb-3 app-setting-blog-block {% if settings.activeBlog %}active{% endif %}">
+            <div class="col-12 col-md-6">
+                {{ form_row(form.nbreArticlePage) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-row mt-4">
+    <div class="col-12">
+        <div class="border border-secondary border-top-0 border-left-0 border-right-0">
+            <h4 class="h4-responsive badge badge-secondary d-inline-block mr-1" style="position: relative; bottom: 6px;">6</h4>
+            <h4 class="h4-responsive text-secondary d-inline-block font-weight-stone-600">Module de rencontre</h4>
+        </div>
+    </div>
+</div>
+<div class="form-row my-3">
+    <div class="col-12 col-md-4">
+        <div class="grey-text pb-1">{{ form.activeRencontre.vars.label|trans }}</div>
+        <div class="switch stone-switch mt-1 ml-md-2">
+            <label>
+                Non
+                <input type="checkbox" name="{{ form.activeRencontre.vars.full_name }}" id="{{ form.activeRencontre.vars.id }}"
+                       value="{{ form.activeRencontre.vars.value }}" {% if form.activeRencontre.vars.checked %}checked="checked{% endif %}">
+                <span class="lever"></span>
+                Oui
+            </label>
+        </div>
+    </div>
+</div>

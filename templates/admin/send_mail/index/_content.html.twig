@@ -1,0 +1,89 @@
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-center justify-content-md-between">
+        <div id="entity-list-delete-bulk-btn" class="mr-3 d-none entity-email-delete-bulk-btn">
+            {% include 'Ui/Grid/Action/delete.html.twig' with {'action': {'label': 'Supprimer'}} %}
+        </div>
+        <div class="d-flex ml-auto">
+            <div class="">
+                {% include 'admin/send_mail/filter.html.twig' with {'form': searchForm}  %}
+            </div>
+            {% set path = path('app_admin_send_mail_create') %}
+            <div class="mr-3">
+                <a href="" class="btn btn-grey" data-toggle="modal" data-target="#entity-search">
+                    <i class="fas fa-filter mr-1" aria-hidden="true"></i> Filtres
+                </a>
+            </div>
+            {% include 'Ui/Grid/Action/create.html.twig' with {'path': path, 'action': {'label': 'Créer'}} %}
+        </div>
+    </div>
+</div>
+
+{% if emails|length > 0 %}
+    <div class="row app-user mb-5">
+        <div class="col-12">
+            <table class="table table-responsive-sm">
+                <thead class="text-primary">
+                <tr>
+                    <th scope="col" class="text-center">
+                        <div class="" style="position: relative; right: 10px; top: 2px">
+                            <input type="checkbox" name="principal" class="form-check-input filled-in" id="principal-checkbox" value="" style="margin: 0 !important;" />
+                            <label class="form-check-label" for="principal-checkbox"
+                                   style="padding-left: 0!important; "></label>
+                        </div>
+                    </th>
+                    <th scope="col" class="font-weight-stone-500 text-center">Destinataire</th>
+                    <th scope="col" class="font-weight-stone-500 text-center">Sujet</th>
+                    <th scope="col" class="font-weight-stone-500 text-center">Envoyer le</th>
+                    <th scope="col" class="font-weight-stone-500 text-center">Contenu</th>
+                    <th scope="col" class="font-weight-stone-500 text-center">Status</th>
+                    <th scope="col" class="font-weight-stone-500 text-center"></th>
+                </tr>
+                </thead>
+                <tbody id="list-checkbook-container">
+                {% for email in emails %}
+                    <tr>
+                        <td class="text-center">
+                            <div class="" style="position: relative; right: 10px; top: 2px">
+                                <input type="checkbox" name="checkbox{{ loop.index }}" class="form-check-input filled-in list-checkbook"
+                                       id="checkbox{{ loop.index }}" value="{{ email.id }}" style="margin: 0 !important;" />
+                                <label class="form-check-label" for="checkbox{{ loop.index }}" style="padding-left: 0!important; "></label>
+                            </div>
+                        </td>
+                        <td class="text-center">{{ email.destinataire }}</td>
+                        <td class="text-center">{{ email.subject }}</td>
+                        <td class="text-center">{{ email.createdAt|date('d/m/Y H:i') }}</td>
+                        <td class="text-center">{{ email.content }}</td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <a href="" class="dropdown-toggle"><i class="fas fa-ellipsis-h"></i></a>
+                                <div class="dropdown-menu dropdown-primary dropdown-menu-right mt-0">
+                                    <a href="{{ path('app_admin_resend_mail', {'id': email.id}) }}" class="dropdown-item">
+                                        <i class="fas fa-sync mr-1"></i> Renvoyer
+                                    </a>
+                                    <a class="dropdown-item entity-email-delete" id="{{ email.id }}">
+                                        <i class="fas fa-trash mr-1 text-danger"></i> Supprimer
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 d-flex justify-content-start mt-2">
+            <div class="font-weight-stone-500 text-secondary">{{ emails.totalItemCount }} resultats</div>
+        </div>
+        <div class="col-12 d-flex justify-content-center mt-2">
+            {{ knp_pagination_render(emails, 'Ui/_pagination.html.twig') }}
+        </div>
+    </div>
+{% else %}
+    <div class="row app-user d-flex justify-content-center">
+        <div class="col-12 col-md-8 text-center mt-3 mt-md-5">
+            <h3 class="text-primary h3-responsive font-weight-stone-600">
+                Vous n'avez envoyer aucun mail.
+            </h3>
+        </div>
+    </div>
+{% endif %}

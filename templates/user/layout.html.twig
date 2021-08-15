@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ config.get.description }}{% endblock %}
+
+{% block app_navbar_first %}
+    <div id="slide-out" class="side-nav sn-bg-4 fixed">
+        <ul class="custom-scrollbar">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li>
+                    <div class="logo avatar">
+                        <a href="{{ path('fos_user_profile_show') }}" class="text-center user-info">
+                            {% if vich_uploader_asset(app.user, 'file') %}
+                                <img src="{{ vich_uploader_asset(app.user, 'file') }}" class="rounded-circle" alt="avatar image">
+                            {% else %}
+                                <span class="user-prefix d-inline-block rounded-circle">
+                            {{ app_prefix_user_name(app.user) }}
+                        </span>
+                            {% endif %}
+                            <div style="line-height: normal">{{ app.user.firstname|capitalize }} {{ app.user.lastname|capitalize }}</div>
+                        </a>
+                    </div>
+                </li>
+            {% else %}
+                <li>
+                    <div class="text-center user-mobile-wrapper">
+                        <a href="{{ path('fos_user_security_login') }}" class="d-inline-block px-0">Se connecter</a>
+                        <span class="d-inline-block mx-1">/</span>
+                        <a href="{{ path('fos_user_registration_register') }}" class="d-inline-block px-0">S'inscrire</a>
+                    </div>
+                </li>
+            {% endif %}
+
+            {% set dashboard = isActive('app_dashboard_index') %}
+            {% set locale = isActive('app_dashboard_locale_index') %}
+
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a href="{{ path('app_home') }}" class="waves-effect">
+                            <i class="sv-slim-icon fas fa-home"></i>
+                            Accueil
+                        </a>
+                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}{% endif %}
+
+                    <li>
+                        <a href="{{ path('app_dashboard_index') }}" class="waves-effect {% if dashboard %}active{% endif %}">
+                            <i class="sv-slim-icon fas fa-th-large"></i>
+                            Tableau de bord
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_dashboard_locale_index') }}" class="waves-effect {% if locale %}active{% endif %}">
+                            <i class="sv-slim-icon fas fa-store"></i>
+                            Locale
+                        </a>
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="sv-slim-icon fas fa-clipboard-list"></i> Gestion du menu
+                            <i class="fas fa-angle-down rotate-icon"></i>
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="" class="waves-effect active">
+                                        <span class="sv-normal">Menu</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="waves-effect">
+                                        <span class="sv-normal">Elements du menu</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="sv-slim-icon fas fa-clipboard-list"></i> Ventes
+                            <i class="fas fa-angle-down rotate-icon"></i>
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="" class="waves-effect active">
+                                        <span class="sv-normal">Commandes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="waves-effect">
+                                        <span class="sv-normal">Elements du menu</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r active">
+                            <i class="sv-slim-icon fas fa-user"></i> Mon profil
+                            <i class="fas fa-angle-down rotate-icon"></i>
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="" class="waves-effect active">
+                                        <span class="sv-normal">Annonces favoris</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r active">
+                            <i class="sv-slim-icon fas fa-chevron-right"></i> Submit blog
+                            <i class="fas fa-angle-down rotate-icon"></i>
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#" class="waves-effect active">
+                                        <span class="sv-slim"> SL </span>
+                                        <span class="sv-normal">Submit listing</span></a>
+                                </li>
+                                <li><a href="#" class="waves-effect">
+                                        <span class="sv-slim"> RF </span>
+                                        <span class="sv-normal">Registration form</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="sidenav-bg mask-strong"></div>
+    </div>
+
+    <nav class="navbar fixed-top navbar-expand-lg double-nav py-0">
+        <div class="float-left" >
+            <a href="#" data-activates="slide-out"
+               class="button-collapse"><i class="fas fa-bars"></i>
+            </a>
+        </div>
+        <div class="mobile-logo">
+            <a class="navbar-brand" href="{{ path('app_home') }}">
+                <img src="{{ vich_uploader_asset(config.get, 'file') }}" alt="Logo du site" class="img-fluid logo"/>
+            </a>
+
+            {% block app_mobile_cart %}
+                <a href="#" class="cart grey-text">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge badge-danger">5</span>
+                </a>
+            {% endblock %}
+        </div>
+    </nav>
+    {# Petit telephone #}
+{% endblock %}
+
+{% block app_navbar_second %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+
+

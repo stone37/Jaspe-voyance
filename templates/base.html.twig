@@ -1,12 +1,81 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+<html lang="fr" {{ sonata_seo_html_attributes() }}>
+    <head {{ sonata_seo_head_attributes() }}>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        {% block title %}{% endblock %}
+
+        {% block seo %}
+            {{ sonata_seo_metadatas() }}
+            {{ sonata_seo_link_canonical() }}
+            {{ sonata_seo_lang_alternates() }}
+        {% endblock %}
+
+        <link rel="index" title="Balise Meta" href="{{ app.request.schemeAndHttpHost }}/" />
+        <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}/" />
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon.png') }}" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+        {% block stylesheets %}
+            {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/bootstrap.css'} %}
+            {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/mdb.css'} %}
+            {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/style.css'} %}
+        {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <body id="top-section" class="fixed-sn skin-light">
+        {% include 'Ui/_flashes.html.twig' %}
+
+        <header>
+            {% block app_navbar_first %}{% endblock %}
+            {% block app_navbar_second %}{% endblock %}
+        </header>
+        {% block app_navbar_three %}{% endblock %}
+
+        <main class="px-2 px-md-1">
+            {% block app_body %}{% endblock %}
+        </main>
+
+        {% include 'Ui/_top_scroll.html.twig' %}
+        {% include 'Ui/_confirmation.html.twig' %}
+
+        {% block app_footer %}
+            {% include '_footer.html.twig' %}
+        {% endblock %}
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+        <script>
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#000"
+                    },
+                    "button": {
+                        "background": "#f72459"
+                    }
+                },
+                "showLink": false,
+                "theme": "classic",
+                "position": "bottom",
+                "content": {
+                    "message": "Ce site utilise des cookies pour améliorer votre expérience.",
+                    "dismiss": "J'accepte"
+                }
+            });
+        </script>
+        {% block javascripts %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/jquery.js'} %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/popper.js'} %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/bootstrap.js'} %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/mdb.js'} %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/init.js'} %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/script.js'} %}
+            {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/newsletter.js'} %}
+        {% endblock %}
     </body>
 </html>
+

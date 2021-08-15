@@ -1,0 +1,14 @@
+.skin-light .list-group .list-group-item {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+.skin-light .list-group .list-group-item i {
+    font-size: .6rem;
+    background-color: #00e676;
+    padding: 0.2rem;
+    border-radius: 50%;
+    color: #ffffff;
+}
+

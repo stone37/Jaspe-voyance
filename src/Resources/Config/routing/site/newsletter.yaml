@@ -1,0 +1,10 @@
+app_newsletter_subscribe:
+  path: /newsletter/subscribe/
+  controller: App\Controller\NewsletterController::subscribe
+  options:
+      expose: true
+
+app_newsletter_unsubscribe:
+  path: /newsletter/unsubscribe/
+  controller: App\Controller\NewsletterController::unsubscribe
+

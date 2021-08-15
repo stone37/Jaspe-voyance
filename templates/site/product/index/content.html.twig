@@ -1,0 +1,59 @@
+{% set cart = app.session.get('app_cart') %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                {% if products|length > 0 %}
+                <section>
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="">
+                                    <div class="view zoom z-depth-2 rounded">
+                                        <img class="img-fluid w-100" src="{{ vich_uploader_asset(product, 'file') }}" alt="Sample">
+                                        <a href="{{ path('app_product_show', {'slug': product.slug}) }}">
+                                            <div class="mask"></div>
+                                        </a>
+                                    </div>
+
+                                    <div class="text-center pt-4">
+
+                                        <h5 class="h5-responsive font-weight-500">{{ product.name|truncate(22) }}</h5>
+                                        <h6 class="mb-3 font-weight-600">€ {{ tax(product.price, product.tva.value)|number_format(2, '.', ',') }}</h6>
+
+                                        {% if cart[product.id] is not defined %}
+                                            <a href="{{ path('app_cart_add', {'id': product.id}) }}" class="btn btn-primary btn-sm mr-1">
+                                                <i class="fas fa-shopping-cart pr-2"></i> Ajouter au panier
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="col-12 d-flex justify-content-center mt-3">
+                            {{ knp_pagination_render(products, 'Ui/_pagination.html.twig') }}
+                        </div>
+                    </div>
+                </section>
+                {% else %}
+                    <div class="row app-user d-flex justify-content-center">
+                        <div class="col-12 col-md-8 text-center mt-3 mt-md-5">
+                            <h3 class="text-secondary h3-responsive font-weight-stone-600">
+                                Aucun produit sur le site
+                            </h3>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'commerce'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

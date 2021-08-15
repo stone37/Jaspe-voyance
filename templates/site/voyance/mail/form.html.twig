@@ -1,0 +1,62 @@
+<div class="form-row mb-4">
+    <div class="col-12 col-md-6">
+        {{ form_row(form.lastName) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.firstName) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.email) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.birthDay) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        {{ form_row(form.cityOfBirth) }}
+        <small class="form-text text-muted" style="margin-top: -4px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="d-flex flex-wrap">
+            <div class="select-outline position-relative w-100">
+                {{ form_widget(form.field) }}
+                <label>{{ form.field.vars.label }}</label>
+            </div>
+            <div style="margin-top: -15px;" class="red-text font-weight-stone-500">{{ form_errors(form.field) }}</div>
+        </div>
+        <small class="form-text text-muted" style="margin-top: -10px">
+            Ce champ est obligatoire
+        </small>
+    </div>
+    <div class="col-12">
+        <div class="md-form md-outline">
+            {{ form_widget(form.comments) }}
+            {{ form_label(form.comments) }}
+            <div class="red-text font-weight-stone-500">{{ form_errors(form.comments) }}</div>
+        </div>
+    </div>
+    <div class="col-12">
+        {{ form_row(form.recaptchaToken) }}
+    </div>
+
+    {% if settings.vMailDelai %}
+        <div class="col-12">
+            <p class="text-secondary text-center font-weight-600">
+                Vous aurez une reponse dans moins de {{ settings.vMailDelai }}h.
+            </p>
+        </div>
+    {% endif %}
+</div>

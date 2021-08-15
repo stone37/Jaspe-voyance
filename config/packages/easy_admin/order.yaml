@@ -1,0 +1,27 @@
+easy_admin:
+    entities:
+        Order:
+            label: 'Commandes'
+            class: App\Entity\Commande
+            list:
+                title: 'Commandes'
+                help: 'Traiter vos commandes'
+                collapse_actions: false
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                actions:
+                    - '-new'
+                    - '-edit'
+                    - '-search'
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: 'createdAt', label: 'Date' }
+                    - { property: 'client', label: 'Client' }
+                    - { property: 'reference', label: 'Reference' }
+                    - { property: 'priceTotal', label: 'Montant Euro' }
+                    - { property: 'validate', label: 'Payée' }
+                    - { property: 'shipment.enabled', label: 'Expédié' }
+
+
+
+

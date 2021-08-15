@@ -1,0 +1,94 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-4">
+                        {% if settings.activeCabinetV %}
+                            <div class="card card-cascade narrower">
+                                <div class="view view-cascade overlay">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg"
+                                         alt="Card image cap">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body card-body-cascade text-center">
+                                    <div class="rec-data bg-primary text-white py-2 px-2">
+                                        <div class="date-days"><i class="fas fa-comments"></i></div>
+                                    </div>
+                                    <h4 class="font-weight-bold text-primary card-title">Voyance en cabinet</h4>
+                                    <p class="card-text my-4">
+                                        La consultation en cabinet, un précieux moment de sérénitée.
+                                    </p>
+                                    <div>
+                                        <a href="{{ path('app_voyance_cabinet') }}" class="btn btn-secondary btn-sm">En savoir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-4">
+                        {% if settings.activeMailV %}
+                            <div class="card card-cascade narrower">
+                                <div class="view view-cascade overlay">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg"
+                                         alt="Card image cap">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body card-body-cascade text-center">
+                                    <div class="rec-data bg-primary text-white py-2 px-2">
+                                        <div class="date-days"><i class="fas fa-envelope"></i></div>
+                                    </div>
+                                    <h4 class="font-weight-bold text-primary card-title">Voyance par mail</h4>
+                                    <p class="card-text my-4">
+                                        Voyance par mail, des resultats rapides et de qualité.
+                                    </p>
+                                    <div>
+                                        <a href="{{ path('app_voyance_mail') }}" class="btn btn-secondary btn-sm">En savoir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-4">
+                        {% if settings.activePhoneV %}
+                            <div class="card card-cascade narrower">
+                                <div class="view view-cascade overlay">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg"
+                                         alt="Card image cap">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body card-body-cascade text-center">
+                                    <div class="rec-data bg-primary text-white py-2 px-2">
+                                        <div class="date-days"><i class="fas fa-phone-alt"></i></div>
+                                    </div>
+                                    <h4 class="font-weight-bold text-primary card-title">Voyance par téléphone</h4>
+                                    <p class="card-text my-4">
+                                        Voyance par téléphone précise et adaptée à vos besoins.
+                                    </p>
+                                    <div>
+                                        <a href="{{ path('app_voyance_phone') }}" class="btn btn-secondary btn-sm">En savoir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'voyance'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

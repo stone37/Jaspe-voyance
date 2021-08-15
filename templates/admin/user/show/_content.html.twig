@@ -1,0 +1,117 @@
+{% import 'Ui/Macro/buttons.html.twig' as buttons %}
+
+<div class="row app-user">
+    <div class="col-12">
+        <table class="table table-borderless table-responsive-sm">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Id</div>
+                    <div class="content text-primary font-weight-stone-600">{{ user.id }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Nom et prénom</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {{ user.lastName }} {{ user.firstName }}
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Email</div>
+                    <div class="content text-primary font-weight-stone-600">{{ user.email }}</div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Téléphone</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if user.phone %}
+                            {{ user.phone }}
+                        {% else %}
+                            <span class="badge badge-grey">Aucune</span>
+                        {% endif %}
+                    </div>
+                </td>
+
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Date de naissance</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if user.birthDay %}
+                            {{ user.birthDay|date('d/m/Y') }}
+                        {% else %}
+                            <span class="badge badge-grey">Aucune</span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Adresse</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if user.address %}
+                            {{ user.address }}
+                        {% else %}
+                            <span class="badge badge-grey">Aucune</span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Code postale</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {{ user.code }}
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Ville</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if user.ville %}
+                            {{ user.ville }}
+                        {% else %}
+                            <span class="badge badge-grey">Aucune</span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Civilité</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {{ user.civilite }}
+                    </div>
+                </td>
+
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Date de création</div>
+                    <div class="content text-primary font-weight-stone-600">{{ user.createdAt|date('d/m/Y H:i:s') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="title font-weight-stone-600 grey-text">Avatar</div>
+                    <div class="content text-primary font-weight-stone-600">
+                        {% if vich_uploader_asset(user, 'file') %}
+                            <img src="{{ vich_uploader_asset(user, 'file') }}" alt="User avatar"
+                                 class="img-fluid z-depth-2" style="width: 140px;" />
+                        {% else %}
+                            <span class="badge badge-grey">Aucune</span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-end mt-4">
+            {% if type == 1 %}
+                {% set path = path('app_admin_user_index') %}
+            {% elseif type == 2 %}
+                {% set path = path('app_admin_user_no_confirm_index') %}
+            {% else %}
+                {% set path = path('app_admin_user_deleted_index') %}
+            {% endif %}
+
+            <div class="text-center mr-3">{{ buttons.default(path, 'Retour à la liste', 'app-entity-list-btn', 'fas fa-angle-left', 'btn-outline-primary') }}</div>
+        </div>
+    </div>
+</div>
+
+

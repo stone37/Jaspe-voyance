@@ -1,0 +1,57 @@
+app_cart_index:
+    path: /cart/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::index
+
+app_cart_add:
+    path: /cart/{id}/add/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::add
+    requirements:
+        id: \d+
+    options:
+        expose: true 
+
+app_cart_delete:
+    path: /cart/{id}/delete/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::delete
+    requirements:
+        id: \d+
+
+app_cart_shipment:
+    path: /cart/shipment/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::shipment
+
+app_cart_validate:
+    path: /cart/validate/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::validate
+
+app_cart_demand_validate:
+    path: /cart/demand/validate/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::validateDemand
+
+
+
+
+
+app_cart_set_quantity:
+    path: /cart/{id}/setQuantity/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::setQuantity
+    requirements:
+        id: \d+
+
+app_cart_set_shipment:
+    path: /cart/setShipment/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::setShipment
+
+app_cart_clear:
+    path: /cart/clear/
+    methods: [GET, POST]
+    controller: App\Controller\CartController::clear
+

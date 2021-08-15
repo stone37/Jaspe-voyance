@@ -1,0 +1,4 @@
+app_review_index:
+    path: /temoignoges/
+    methods: [GET, POST]
+    controller: App\Controller\ReviewController::index

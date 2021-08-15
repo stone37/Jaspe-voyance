@@ -1,0 +1,19 @@
+{% extends 'site/layout.html.twig' %}
+
+{% block app_navbar_second %}{% endblock %}
+{% block app_cart %}{% endblock %}
+{% block seo %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/security.css'} %}
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/page.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/site/security.js'} %}
+{% endblock %}
+

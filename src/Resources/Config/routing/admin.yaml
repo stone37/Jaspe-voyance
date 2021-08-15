@@ -1,0 +1,63 @@
+app_admin_dashboard:
+    path: /
+    controller: App\Controller\Admin\DashboardController::index
+
+app_admin_post:
+    resource: "../Resources/Config/routing/admin/post.yaml"
+
+app_admin_category:
+    resource: "../Resources/Config/routing/admin/category.yaml"
+
+app_admin_tag:
+    resource: "../Resources/Config/routing/admin/tag.yaml"
+
+app_admin_comment:
+    resource: "../Resources/Config/routing/admin/comment.yaml"
+
+app_admin_user:
+    resource: "../Resources/Config/routing/admin/user.yaml"
+
+app_admin_admin:
+    resource: "../Resources/Config/routing/admin/admin.yaml"
+
+app_admin_settings:
+    resource: "../Resources/Config/routing/admin/settings.yaml"
+
+app_admin_demand:
+    resource: "../Resources/Config/routing/admin/demand.yaml"
+
+app_admin_product:
+    resource: "../Resources/Config/routing/admin/product.yaml"
+
+app_admin_order:
+    resource: "../Resources/Config/routing/admin/order.yaml"
+
+app_admin_shipment:
+    resource: "../Resources/Config/routing/admin/shipment.yaml"
+
+app_admin_shipmentMethod:
+    resource: "../Resources/Config/routing/admin/shipmentMethod.yaml"
+
+app_admin_tax:
+    resource: "../Resources/Config/routing/admin/tax.yaml"
+
+app_admin_review:
+    resource: "../Resources/Config/routing/admin/review.yaml"
+
+app_admin_event:
+    resource: "../Resources/Config/routing/admin/event.yaml"
+
+app_admin_event_demand:
+    resource: "../Resources/Config/routing/admin/event_demand.yaml"
+
+app_admin_payment:
+    resource: "../Resources/Config/routing/admin/payment.yaml"
+
+app_admin_send_mail:
+    resource: "../Resources/Config/routing/admin/send_mail.yaml"
+
+app_banner:
+    resource: "../Resources/Config/routing/admin/banner.yaml"
+
+
+

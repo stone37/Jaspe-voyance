@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        Shipment:
+            label: 'Expéditions'
+            class: App\Entity\Shipment
+            list:
+                title: 'Expéditions'
+                help: 'Gérer les expéditions'
+                collapse_actions: false
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                actions:
+                    - '-show'
+                    - '-edit'
+                    - '-search'
+                    - '-new'
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: createdAt, label: 'Créé le' }
+                    - { property: shippedAt, label: 'Livré le' }
+                    - { property: order, label: 'Commande' }
+                    - { property: 'enabled', label: 'Expédié' }
+
+
+

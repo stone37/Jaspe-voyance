@@ -1,0 +1,49 @@
+app_admin_demand_mail_index:
+    path: /demandes/mail/
+    methods: [GET]
+    controller: App\Controller\Admin\DemandController::index
+
+app_admin_demand_phone_index:
+    path: /demandes/telephone/
+    methods: [GET]
+    controller: App\Controller\Admin\DemandController::indexP
+
+app_admin_demand_home_index:
+    path: /demandes/cabinet/
+    methods: [GET]
+    controller: App\Controller\Admin\DemandController::indexH
+
+app_admin_demand_show:
+    path: /demandes/{id}/show/
+    methods: [GET]
+    controller: App\Controller\Admin\DemandController::show
+    requirements:
+        id: \d+
+
+app_admin_demand_treat:
+    path: /demandes/{id}/treat/
+    methods: [GET]
+    controller: App\Controller\Admin\DemandController::treat
+    requirements:
+        id: \d+
+
+app_admin_demand_delete:
+    path: /demandes/{id}/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\DemandController::delete
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+app_admin_demand_bulk_delete:
+    path: /demandes/bulk/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\DemandController::deleteBulk
+    options:
+        expose: true
+
+
+
+
+

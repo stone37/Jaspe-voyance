@@ -1,0 +1,70 @@
+{% if settings.activeRencontre %}
+    {% set hash_month = {
+        "Jan": "Jan", "Feb": "Fév", "Mar": "Mar", "Apr": "Avr",
+        "May": "Mai", "Jun": "Jun", "Jul": "Jul", "Aug": "Aou",
+        "Sep": "Sep", "Oct": "Oct", "Nov": "Nov", "Dec": "Déc",
+    } %}
+
+    <hr class="my-5">
+
+    <section>
+        <h1 class="h1-responsive font-weight-600 text-primary text-center mb-4">Un nouveau souffle sur vos rencontres</h1>
+        <div class="row wow fadeIn">
+            <div class="col-12 px-4 mb-4">
+                <p class="">
+                    Votre vie affective est-elle trop vide ? Aucun SMS tendre depuis longtemps ?
+                    Pourtant vous avez essayé un site de rencontres, peut-être plusieurs. Et... rien.
+                    Vous en êtes déçus. Trop de faux profils, trop de soirées perdues en tchats stériles !
+                    Vous avez donc raison de chercher une autre solution, plus efficace, plus rapide, plus saine.
+                    <br>
+                    Le virtuel présente trop de mensonges et de pièges. Il faut revenir à de vraies valeurs,
+                    celles de l'<span class="text-primary">authenticité</span> et de l'<span class="text-primary">honnêteté</span>.
+                    Rien ne vaut la rencontre en face à face pour se faire une idée <span class="text-primary">vraie</span> et
+                    <span class="text-primary">démasquer les faux profils</span>. C'est pourquoi nous organisons des rencontres
+                    qui vous permettrons de vous faire des amis voir plus encore. <br>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {% if events|length > 0 %}
+        <section>
+            <h1 class="h1-responsive font-weight-600 text-primary text-center mb-5">Prochains rencontres : rejoignez-les !</h1>
+
+            <div class="row">
+                {% for event in events %}
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card card-cascade narrower">
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="{{ vich_uploader_asset(event, 'file') }}" alt="Evenement image">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body card-body-cascade text-center">
+                                <div class="rec-data bg-primary text-white py-2 px-2">
+                                    <div class="date-days">{{ event.eventDateAt|date('d') }}</div>
+                                    <div class="date-year mt-2">
+                                        {{ hash_month[event.eventDateAt|date('M')] }}. {{ event.eventDateAt|date('Y') }}
+                                    </div>
+                                </div>
+                                <div class="rec-location bg-secondary text-white d-flex">
+                                    <div class="mr-2"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div class="city">{{ event.city }}</div>
+                                </div>
+                                <h4 class="font-weight-bold text-primary card-title">{{ event.title|truncate(25) }}</h4>
+                                <p class="card-text my-4">
+                                    {{ event.partialDescription|truncate(90) }}
+                                </p>
+                                <div class="">
+                                    <a href="{{ path('app_event_show', {'slug': event.slug}) }}" class="btn btn-secondary btn-block btn-sm">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+{% endif %}
+

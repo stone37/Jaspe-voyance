@@ -1,0 +1,36 @@
+app_admin_demand_event_index:
+    path: /event-demand/
+    methods: [GET]
+    controller: App\Controller\Admin\EventDemandController::index
+
+app_admin_demand_event_show:
+    path: /event-demand/{id}/show/
+    methods: [GET]
+    controller: App\Controller\Admin\EventDemandController::show
+    requirements:
+        id: \d+
+
+app_admin_demand_event_treat:
+    path: /event-demand/{id}/treat/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\EventDemandController::treat
+    requirements:
+        id: \d+
+
+app_admin_demand_event_delete:
+    path: /event-demand/{id}/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\EventDemandController::delete
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+app_admin_demand_event_bulk_delete:
+    path: /event-demand/bulk/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\EventDemandController::deleteBulk
+    options:
+        expose: true
+
+

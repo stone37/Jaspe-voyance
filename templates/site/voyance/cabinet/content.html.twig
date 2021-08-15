@@ -1,0 +1,116 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">Votre cabinet de voyance</h2>
+                                <p class="mb-5">
+                                    Réalisée sur rendez-vous dans le calme et la confiance, la consultation en cabinet
+                                    constitue une formule de voyance confortable et idéale. Le contact direct permet de
+                                    mieux vous connaître et d’échanger avec vous de façon précise.
+                                </p>
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    La consultation de voyance en cabinet, un précieux moment de sérénité
+                                </h2>
+                                <p class="mb-5">
+                                    Dans le cabinet de voyance, aucun élément extérieur ne vient gêner le rapport
+                                    de confiance qui c'est établi. La qualité de la consultation est donc
+                                    optimale et forme le parfait complément des prestations de
+                                    <a href="{{ path('app_voyance_mail') }}" class="link font-weight-500">voyance par mail</a> et de
+                                    <a href="{{ path('app_voyance_phone') }}" class="link font-weight-500">voyance par téléphone</a>.
+                                    Pendant ce moment d’exception, hors du monde, je forme un lien entre vous et votre futur.
+                                    Vos choix s’en trouvent facilités et vos convictions renforcées.
+                                </p>
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    Prendre rendez-vous
+                                </h2>
+                                <p>
+                                    Pour en savoir plus sur les consultations de voyance en cabinet ou pour prendre rendez-vous,
+                                    contactez-nous au <strong class="text-primary font-weight-stone-600">{{ settings.phone }}</strong>
+                                    ou via le formulaire de contact.
+                                </p>
+                                {% if settings.vCabinetTime %}
+                                    <p class="font-weight-stone-600">
+                                        Tarif pour une consultation de <span class="font-weight-stone-600 text-primary">{{ settings.vCabinetTime }} minutes</span>
+                                        en cabinet:
+                                        {% if settings.vCabinetRemise %}
+                                            {% set price = (settings.vCabinetPrice - ((settings.vCabinetPrice * settings.vCabinetRemise) / 100)) %}
+
+                                            {% if price > 0 %}
+                                                <span class="text-primary h2-responsive font-weight-stone-600 mr-1"><strong>€{{ price|number_format(2, '.', ',') }}</strong></span>
+                                                <span class="text-grey h3-responsive"><strong><s>€{{ settings.vCabinetPrice|number_format(2, '.', ',') }}</s></strong></span>
+                                            {% else %}
+                                                <span class="h2-responsive text-primary">Gratuite</span>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if settings.vCabinetPrice %}
+                                                <span class="h2-responsive text-primary">€{{ settings.vCabinetPrice|number_format(2, '.', ',') }}</span>
+                                            {% else %}
+                                                <span class="h2-responsive text-primary">Gratuite</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    </p>
+                                {% else %}
+                                    <p class="font-weight-stone-600">
+                                        Tarif pour une consultation en cabinet :
+
+                                        {% if settings.vCabinetRemise %}
+                                            {% set price = (settings.vCabinetPrice - ((settings.vCabinetPrice * settings.vCabinetRemise) / 100)) %}
+
+                                            {% if price > 0 %}
+                                                <span class="text-primary h2-responsive font-weight-stone-600 mr-1"><strong>€{{ price|number_format(2, '.', ',') }}</strong></span>
+                                                <span class="text-grey h3-responsive"><strong><s>€{{ settings.vCabinetPrice|number_format(2, '.', ',') }}</s></strong></span>
+                                            {% else %}
+                                                <span class="h2-responsive text-primary">Gratuite</span>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if settings.vCabinetPrice %}
+                                                <span class="h2-responsive">€{{ settings.vCabinetPrice|number_format(2, '.', ',') }}</span>
+                                            {% else %}
+                                                <span class="h2-responsive text-primary">Gratuite</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    </p>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-between mt-3 mb-3 px-lg-5">
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-12 col-lg-5 mb-2">
+                                        <a href="tel:+33 {{ settings.phone }}" class="btn btn-outline-primary font-weight-stone-600
+                                        text-center" style="line-height: 23px; font-weight: 600 !important">
+                                            Demande de rendez-vous par téléphone au <br>
+                                            <span class="font-weight-600 text-secondary h3-responsive mt-2 d-inline-block">
+                                                {{ settings.phone }}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-lg-5 mb-2">
+                                        <a id="event-demand-form-btn" href="{{ path('app_voyance_cabinet_contact') }}"
+                                           class="btn btn-primary" style="line-height: 23px; font-weight: 500 !important">
+                                            Demande de rendez-vous par internet <br>
+                                            <span class="font-weight-600 text-secondary h3-responsive mt-2 d-inline-block">
+                                                via un formulaire
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'voyance'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

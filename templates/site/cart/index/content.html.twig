@@ -1,0 +1,164 @@
+{% set cart = app.session.get('app_cart') %}
+{% set totalHT = 0 %}
+{% set totalTTC = 0 %}
+{% set refTva = 0 %}
+
+<section class="my-4">
+    <div class="row">
+        {% if cart|length > 0 %}
+            <div class="col-12 d-flex justify-content-end">
+                <div class="mb-4">
+                    <a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger btn-sm"
+                       data-toggle="tooltip" title="Cliquer pour vider votre panier">
+                        <i class="fas fa-times mr-2"></i>
+                        Vider le panier
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if products|length > 0 %}
+        <div class="col-lg-8">
+            <div class="card wish-list mb-4">
+                <div class="card-body">
+                    <h5 class="mb-4">Panier (<span>{{ products|length }}</span> article(s))</h5>
+                        {% for product in products %}
+                            <div class="row mb-4">
+                                <div class="col-md-5 col-lg-3 col-xl-3">
+                                    <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                        <img class="img-fluid w-100 h-100"
+                                             src="{{ vich_uploader_asset(product, 'file') }}" alt="Produit image">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-lg-9 col-xl-9">
+                                    <div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5>{{ product.name }}</h5>
+                                                <p class="mb-3 text-muted text-uppercase small">
+                                                    Prix unitaire - <span class="font-weight-600 h5-responsive">€{{ product.price|number_format(2, '.', ',') }}</span>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <form action="{{ path('app_cart_add', { 'id' : product.id }) }}" method="get">
+                                                    <div class="form-row d-flex justify-content-end">
+                                                        <div class="col-12 col-md-6">
+                                                            <select id="qte{{ loop.index }}" name="qte"
+                                                                    class="mdb-select mt-0 md-form md-outline dropdown-stone"
+                                                                    onChange="this.form.submit()">
+                                                                {% for i in 1..10 %}
+                                                                    <option value="{{ i }}" {% if i == cart[product.id] %} selected="selected" {% endif %}>{{ i }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            <label for="qte{{ loop.index }}"></label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div>
+                                                <a href="{{ path('app_cart_delete', {'id': product.id}) }}" class="card-link-secondary small text-uppercase mr-3"><i
+                                                            class="fas fa-trash-alt mr-1"></i> Retirer l'article </a>
+                                            </div>
+                                            <p class="mb-0">
+                                                <span>
+                                                    <strong class="font-weight-600 h5-responsive">
+                                                        {% set p = product.price * cart[product.id] %}
+                                                        €{{ p|number_format(2, '.', ',') }}
+                                                    </strong>
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-4">
+
+                            {% set totalHT = totalHT + (product.price * cart[product.id]) %}
+                            {% set totalTTC = totalTTC + (tax(product.price, product.tva.value) * cart[product.id]) %}
+                            {% set refTva = refTva + (taxMontant(product.price, product.tva.value) * cart[product.id]) %}
+                        {% endfor %}
+                    <p class="text-primary mb-0">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Ne retardez pas l'achat, ajouter des articles à votre panier ne signifie pas les réserver
+                    </p>
+                </div>
+            </div>
+
+            {% if shipmentMethod.filename %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="mb-4">Methode de livraison</h5>
+
+                        <img src="{{ vich_uploader_asset(shipmentMethod, 'file') }}" style="width: 18% !important;" alt="">
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <img class="mr-2 img-fluid" src="{{ asset('images/logo_paypal_paiements_fr.png') }}"  alt="PayPal acceptance mark"
+                        style="width: 20% !important;"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-3">Le montant total</h5>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Total HT <span class="font-weight-600 h5-responsive">€{{ totalHT|number_format(2, '.', ',') }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Coût de l'expédition
+                            <span class="font-weight-600 h5-responsive">
+                                {% if shipmentMethod|length > 0 %}
+                                    €{{ shipmentMethod.price|number_format(2, '.', ',') }}
+                                {% else %}
+                                    Gratuit
+                                {% endif %}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            Total des taxes
+                            <span class="font-weight-600 h5-responsive">€{{ refTva|number_format(2, '.', ',') }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                                <strong>Total TTC</strong>
+                            </div>
+                            <span>
+                                <strong class="font-weight-600 h5-responsive">
+                                    {% set t = totalTTC + shipmentMethod.price %}
+                                    €{{ t|number_format(2, '.', ',') }}
+                                </strong>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <a href="{{ path('app_cart_shipment') }}" class="btn btn-primary btn-block waves-effect waves-light mb-3">Valider mon panier</a>
+                    <a href="{{ path('app_product_index') }}" class="btn btn-grey btn-block waves-effect waves-light">Continuer mes achats</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <div class="col-12">
+                <h3 class="text-secondary text-center my-5 h3-responsive font-weight-stone-600">
+                    Votre panier est vide
+                </h3>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-lg-8">
+
+        </div>
+    </div>
+</section>

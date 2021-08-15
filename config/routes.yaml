@@ -1,3 +1,12 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+app_site:
+    resource: "../src/Resources/Config/routing/site.yaml"
+    prefix: /
+
+app_user:
+    resource: "../src/Resources/Config/routing/user.yaml"
+    prefix: /u/
+
+app_admin:
+    resource: "../src/Resources/Config/routing/admin.yaml"
+    prefix: /admin/
+

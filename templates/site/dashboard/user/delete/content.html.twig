@@ -1,0 +1,27 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'Ui/Form/theme.html.twig' %}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-7 col-lg-5">
+        <div class="card card-cascade narrower">
+            <div class="view view-cascade gradient-card-header bg-primary">
+                <h5 class="mb-0">
+                    Fermer votre compte
+                </h5>
+            </div>
+            <div class="card-body card-body-cascade pt-2">
+                {{ form_start(form) }}
+
+                {{ form_widget(form) }}
+
+                <div class="text-center small-9 text-secondary font-weight-500">Cette opération est irréversible</div>
+                <div class="text-center mt-4">
+                    <input class="btn btn-primary" type="submit" value="{{ 'change_password.submit'|trans }}" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+

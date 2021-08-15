@@ -1,0 +1,63 @@
+<div class="row app-user d-flex justify-content-center">
+    <div class="col-12 info col-md-6 col-lg-4 mb-5">
+        <div class="card promoting-card">
+            <div class="card-body d-flex flex-row">
+                <div>
+                    {% if vich_uploader_asset(user, 'file') %}
+                        <img src="{{ vich_uploader_asset(user, 'file') }}" class="rounded-circle" height="50px" width="50px" alt="avatar">
+                    {% else %}
+                        <div class="user-prefix d-inline-block rounded-circle">
+                            {{ app_prefix_user_name(user) }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="pl-3 pt-1">
+                    <h4 class="card-title dark-grey-text font-weight-stone-600 mb-1">{{ user|truncate(14) }}</h4>
+                    <p class="card-text" data-toggle="tooltip" title="Date d'inscription">
+                        <i class="far fa-clock pr-1"></i> {{ user.createdAt|date('d/m/Y') }}
+                    </p>
+                </div>
+            </div>
+            <div class="card-body pt-2 pb-4">
+                <ul class="card-text text-center list-unstyled">
+                    <li class="font-weight-stone-500">
+                        <i class="far fa-envelope mr-1"></i> {{ user.email }}
+                    </li>
+
+                    <li class="font-weight-stone-500 mt-2">
+                        <i class="fas fa-phone-alt mr-1"></i>
+                        {% if user.phone %}
+                            {{ user.phone }}
+                        {% else %}
+                            <span class="badge badge-grey">Non communiqué</span>
+                        {% endif %}
+                    </li>
+
+                    <li class="mt-4">
+                        <a href="{{ path('fos_user_profile_show') }}" class="link">Vos informations personnelle</a>
+                    </li>
+                    <li class=" mt-2">
+                        <a href="{{ path('fos_user_profile_edit') }}" class="link">Editer votre profil</a>
+                    </li>
+                    <li class=" mt-2">
+                        <a href="{{ path('fos_user_change_password') }}" class="link">Modifier votre mot de passe</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-5">
+        <div class="card weather-card">
+            <div class="card-body text-center pb-3">
+                <h4 class="card-title dark-grey-text font-weight-stone-600">Commande validée</h4>
+
+                <p class="display-1 dark-grey-text font-weight-stone-600 degree">{{ orderAN }}</p>
+
+                <hr>
+
+                <a href="{{ path('app_dashboard_order_index_active') }}" class="btn btn-flat p-1 my-1 mr-0">Vos commandes validées</a>
+            </div>
+
+        </div>
+    </div>
+</div>

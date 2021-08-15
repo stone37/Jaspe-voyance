@@ -1,0 +1,85 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    La voyance par mail, des résultats rapides et de qualité
+                                </h2>
+                                <p class="">
+                                    A l’ère du tout numérique, de la rapidité perpétuelle et du manque de temps
+                                    permanent, la consultation de voyance par mail s’impose même comme une
+                                    évidence pour de nombreuses personnes.
+                                </p>
+                                <p class="mb-5">
+                                    Je vous propose donc de bénéficier simplement de prédictions de voyance
+                                    par mail. Il vous suffit pour cela de rédiger, en quelques lignes,
+                                    les questions qui vous tourmentent, quel que soit le sujet
+                                    (travail, amour, famille, finance…). Je les étudierai calmement et de façon
+                                    très sérieuse, en m’appuyant sur mes dons et sur mes supports de voyance.
+                                    Dans les {{ settings.vMailDelai }} heures, vous recevrez une réponse qui vous
+                                    surprendra par sa précision et sa clarté.
+                                </p>
+
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    Des prédictions précises, transmises par mail
+                                    {% if settings.vMailDelai %}en {{ settings.vMailDelai }} heures{% endif %}
+                                </h2>
+                                <p class="mb-5">
+                                    La voyance par mail est entièrement personnalisée et professionnelle. Chacune
+                                    des prédictions est parfaitement ciblée et basée sur des flashs nets.
+                                    Un simple mail vous permet ainsi de voir plus clair dans votre avenir, d’anticiper
+                                    vos décisions et de faire les bons choix.
+                                </p>
+
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    Comment bénéficier d’une consultation de voyance par mail
+                                </h2>
+                                <p class="">
+                                    Pour bénéficier d’une consultation de voyance par mail, je vous invite à
+                                    poser votre question dans le formulaire correspondant après avoir cliqué sur
+                                    le bouton ci-dessous.
+                                </p>
+                                <p class="font-weight-stone-600">
+                                    Tarif pour une consultation de voyance par mail :
+                                    {% if settings.vMailRemise %}
+                                        {% set price = (settings.vMailPrice - ((settings.vMailPrice * settings.vMailRemise) / 100)) %}
+
+                                        {% if price > 0 %}
+                                            <span class="text-primary h2-responsive font-weight-stone-600 mr-1"><strong>€{{ price|number_format(2, '.', ',') }}</strong></span>
+                                            <span class="text-grey h3-responsive"><strong><s>€{{ settings.vMailPrice|number_format(2, '.', ',') }}</s></strong></span>
+                                        {% else %}
+                                            <span class="h2-responsive text-primary">Gratuite</span>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if settings.vMailPrice %}
+                                            <span class="h2-responsive text-primary">€{{ settings.vMailPrice|number_format(2, '.', ',') }}</span>
+                                        {% else %}
+                                            <span class="h2-responsive text-primary">Gratuite</span>
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
+
+                                <div class="d-flex justify-content-center mt-4 mb-3">
+                                    <a href="{{ path('app_voyance_mail_contact') }}" class="btn btn-primary btn-lg">
+                                        Poser votre question <i class="fas fa-question-circle ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'voyance'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

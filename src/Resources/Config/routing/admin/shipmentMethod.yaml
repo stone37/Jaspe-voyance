@@ -1,0 +1,6 @@
+app_admin_shipmentMethod_index:
+    path: /shipmentMethods/
+    methods: [GET|POST]
+    controller: App\Controller\Admin\ShipmentMethodController::index
+
+

@@ -1,0 +1,80 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row d-flex justify-content-sm-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card card-cascade narrower mb-4">
+            <div class="view view-cascade gradient-card-header purple-gradient">
+                <h2 class="card-header-title">Mes informations</h2>
+            </div>
+            <div class="card-body card-body-cascade text-center pb-4">
+                <h4 class="card-title mb-2">{{ user|truncate(16) }}</h4>
+                <div class="small grey-text font-weight-stone-600">
+                    <div class="d-inline-block" data-toggle="tooltip" title="Nom d'utilisateur">
+                        {% if user.username %}
+                            @{{ user.username }}
+                        {% else %}
+                            @ <span class="badge badge-grey">Aucun</span>
+                        {% endif %}
+                    </div>
+                    <span class="mx-1">|</span>
+                    <div class="d-inline-block" data-toggle="tooltip" title="Date d'inscription">
+                        <i class="far fa-clock pr-1"></i> {{ user.createdAt|date('d/m/Y') }}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <a href="{{ path('fos_user_profile_edit') }}" class="link font-weight-stone-500">
+                        <i class="fas fa-pencil-alt" style="font-size: 1rem;"></i> Modifier le profil
+                    </a>
+                </div>
+                <hr class="mb-2">
+                <ul class="card-text list-group text-left">
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Email">
+                        <i class="far fa-envelope mr-1"></i> {{ user.email }}
+                    </li>
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Email">
+                        {% if user.civilite == 'Monsieur' %}
+                            <i class="fas fa-male mr-1"></i> {{ user.civilite }}
+                        {% else %}
+                            <i class="fas fa-female mr-1"></i> {{ user.civilite }}
+                        {% endif %}
+                    </li>
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Code postal">
+                        <i class="fas fa-map-pin mr-1"></i> {{ user.code }}
+                    </li>
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Numéro de téléphone">
+                        <i class="fas fa-phone-alt mr-1"></i>
+                        {% if user.phone %}{{ user.phone }}{% else %}
+                            <span class="badge badge-grey">Non communiqué</span>
+                        {% endif %}
+                    </li>
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Ville">
+                        <i class="fas fa-map-marker-alt mr-1"></i>
+                        {% if user.ville %}{{ user.ville }}{% else %}
+                            <span class="badge badge-grey">Non communiqué</span>
+                        {% endif %}
+                    </li>
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Adresse">
+                        <i class="far fa-address-book mr-1"></i>
+                        {% if user.address %}{{ user.address }}{% else %}
+                            <span class="badge badge-grey">Non communiqué</span>
+                        {% endif %}
+                    </li>
+                    <li class="font-weight-stone-500 list-group-item border-0 pb-0"
+                        data-toggle="tooltip" title="Date de naissance">
+                        <i class="fas fa-calendar mr-1"></i>
+                        {% if user.birthDay %}{{ user.birthDay|date('d/m/Y') }}{% else %}
+                            <span class="badge badge-grey">Non communiqué</span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

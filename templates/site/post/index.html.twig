@@ -1,0 +1,41 @@
+{% extends 'site/layout.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block app_cart %}{% endblock %}
+
+{% block app_navbar_three %}
+    <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/city10.jpg'); background-repeat: no-repeat; background-size: cover;">
+        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="row d-flex justify-content-center mt-5 mt-md-3 mt-lg-5 pt-lg-5 wow fadeIn">
+                    <div class="col-8 col-md-5 col-lg-3 mb-4 white-text text-center">
+                        <h1 class="display-4 font-weight-bold d-none d-md-block mt-lg-5 pt-md-2 pt-lg-5 mt-md-0 text-center">Actualités</h1>
+                        <h1 class="display-5 font-weight-bold d-block d-md-none text-center">Actualités</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bc text-white">
+        <div class="pt-3 pl-4 container">
+            {{ wo_render_breadcrumbs({ viewTemplate: '_breadcrumb.html.twig', listClass: 'breadcrumb',
+                itemClass: 'breadcrumb-item', separator: '>', separatorClass: 'fas fa-angle-right'}) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block app_body %}
+    {% include 'site/post/index/content.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'Ui/_stylesheets.html.twig' with {'path': 'assets/css/site/page.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

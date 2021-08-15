@@ -1,0 +1,28 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Configuration des modules du site | {{ parent() }}{% endblock %}
+
+{% block app_body %}
+    {% include 'admin/settings/module/_header.html.twig' %}
+
+    {% include 'admin/settings/module/_content.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        let v = 'input#{{ form.activeVoyance.vars.id}}',
+            vMail = 'input#{{ form.activeMailV.vars.id }}',
+            vCabinet = 'input#{{ form.activeCabinetV.vars.id }}',
+            vPhone = 'input#{{ form.activePhoneV.vars.id }}',
+            soins = 'input#{{ form.activeSoins.vars.id }}',
+            blog = 'input#{{ form.activeBlog.vars.id }}';
+    </script>
+
+    {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/admin/create.js'} %}
+{% endblock %}

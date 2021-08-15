@@ -1,0 +1,17 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Liste de la newsletter | {{ parent() }}{% endblock %}
+
+{% block app_body %}
+    {% include 'admin/send_mail/newsletter/_header.html.twig' %}
+
+    {% include 'admin/send_mail/newsletter/_content.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

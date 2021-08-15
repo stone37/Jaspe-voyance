@@ -1,0 +1,75 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    Une voyance par téléphone précise et adaptée à vos besoins
+                                </h2>
+                                <p class="">
+                                    Vous manquez de temps ? Vous êtes dans l’impossibilité de vous déplacer ?
+                                    Je tiens tout de même à vos faire bénéficier de mes services de voyance.
+                                    Vous préférez bénéficier des atouts de la voyance de façon très discrète ?
+                                    C’est votre droit et je le comprend.
+                                </p>
+                                <p class="mb-5">
+                                    Ma solution : la consultation de voyance par téléphone. <br>
+                                    Totalement privée et personnalisée, la voyance par téléphone doit être
+                                    réalisée dans le calme et la sérénité. Réalisé dans de bonnes conditions,
+                                    cet entretien me permet d’obtenir une vision précise de votre futur,
+                                    au même titre que la <a href="{{ path('app_voyance_cabinet') }}" class="font-weight-stone-500 link">voyance en cabinet</a>
+                                    ou la <a href="{{ path('app_voyance_mail') }}" class="font-weight-stone-500 link">voyance par mail</a>.
+                                </p>
+
+                                <h2 class="h2-responsive text-center font-weight-600 text-primary">
+                                    Comment bénéficier d’une consultation de voyance par téléphone
+                                </h2>
+                                <p class="">
+                                    Pour bénéficier d’une consultation de voyance par téléphone, je vous invite à
+                                    renseigner vos informations dans le formulaire correspondant après avoir cliqué sur
+                                    le bouton ci-dessous.
+                                </p>
+                                <p class="font-weight-stone-600">
+                                    Tarif pour une consultation de voyance par téléphone
+                                    {% if settings.vPhoneTime %}de <span class="font-weight-stone-600 text-primary">{{ settings.vPhoneTime }} minutes</span>{% endif %}:
+
+                                    {% if settings.vPhoneRemise %}
+                                        {% set price = (settings.vPhonePrice - ((settings.vPhonePrice * settings.vPhoneRemise) / 100)) %}
+
+                                        {% if price > 0 %}
+                                            <span class="text-primary h2-responsive font-weight-stone-600 mr-1"><strong>€{{ price|number_format(2, '.', ',') }}</strong></span>
+                                            <span class="text-grey h3-responsive"><strong><s>€{{ settings.vPhonePrice|number_format(2, '.', ',') }}</s></strong></span>
+                                        {% else %}
+                                            <span class="h2-responsive text-primary">Gratuite</span>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if settings.vPhonePrice %}
+                                            <span class="h2-responsive text-primary">€{{ settings.vPhonePrice|number_format(2, '.', ',') }}</span>
+                                        {% else %}
+                                            <span class="h2-responsive text-primary">Gratuite</span>
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
+                                <div class="d-flex justify-content-center px-lg-5 mt-4 mb-3">
+                                    <a href="{{ path('app_voyance_phone_contact') }}" class="btn btn-primary btn-lg">
+                                        Renseigner vos informations
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'voyance'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

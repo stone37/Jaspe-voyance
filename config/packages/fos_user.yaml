@@ -1,0 +1,23 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: App\Entity\User
+    from_email:
+        address: "kksteph1989@gmail.com"
+        sender_name: "kksteph1989@gmail.com"
+    registration:
+        confirmation:
+            enabled: false
+            template: '@FOSUser/Registration/email.html.twig'
+        form:
+            type: App\Form\RegistrationFormType
+            name: app_form_registration
+            validation_groups: [AppRegistration, Default]
+    profile:
+        form:
+            type: App\Form\ProfileFormType
+            name: app_form_profile
+            validation_groups: [AppProfile, Default]
+    resetting:
+        email:
+            template:  '@FOSUser/Resetting/email.html.twig'

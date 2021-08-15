@@ -1,0 +1,33 @@
+easy_admin:
+    entities:
+        ShipmentMethod:
+            label: 'Modes de livraison'
+            class: App\Entity\ShipmentMethod
+            form:
+                fields:
+                    - { property: name, label: 'Nom', type: text, type_options: { trim: true, help: 'Champs obligatoire' } }
+                    - { property: price, label: 'Montant', type: money, type_options: { trim: true, help: 'Champs obligatoire' } }
+                    - { property: description, label: 'Description' }
+            list:
+                title: 'Modes de livraison'
+                collapse_actions: false
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                actions:
+                    - '-show'
+                    - '-search'
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Editer' }
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: value, label: 'Montant' }
+                    - { property: description, label: 'Description' }
+            new:
+                title: 'Nouveau mode de livraison'
+            edit:
+                title: 'Edition d''un mode de livraison'
+                actions:
+                    - '-delete'
+
+
+

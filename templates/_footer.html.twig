@@ -1,0 +1,172 @@
+<footer class="page-footer text-center text-md-left mt-5 pt-1">
+
+    {% set settings = config.get %}
+
+    <!--Footer Links-->
+    <div class="container font-weight-normal">
+
+        <!-- Footer links -->
+        <div class="row text-center text-md-left mt-3 pb-3">
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 d-flex">
+                <a href="" class="d-flex text-white">
+                    <div class="" style="width: 40px; height: 40px">
+                        <img src="{{ asset('images/favicon.png') }}" class="img-fluid" alt="logo" />
+                    </div>
+                    <h4 class="h4-responsive pl-2 pt-2 font-weight-stone-600">
+                        {{ settings.name|capitalize }}
+                    </h4>
+                </a>
+            </div>
+            <!--/.First column-->
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!--Second column-->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h4 class="h4-responsive mb-4 pt-2 font-weight-stone-600">Services</h4>
+                {% if settings.activeVoyance
+                    and (settings.activePhoneV or settings.activeMailV or settings.activeCabinetV) %}
+                    <p>
+                        <a href="{{ path('app_voyance_index') }}">Voyances</a>
+                    </p>
+                {% endif %}
+
+                {% if settings.activeRencontre %}
+                    <p>
+                        <a href="{{ path('app_event_index') }}">Rencontres</a>
+                    </p>
+                {% endif %}
+
+                {% if settings.activeSoins %}
+                    <p>
+                        <a href="{{ path('app_soins_index') }}">Soins énergetiques</a>
+                    </p>
+                {% endif %}
+
+                {% if settings.activeShop %}
+                    <p>
+                        <a href="{{ path('app_product_index') }}">Produits</a>
+                    </p>
+                {% endif %}
+
+                {% if settings.activeTemoignages %}
+                    <p>
+                        <a href="{{ path('app_review_index') }}">Témoignages</a>
+                    </p>
+                {% endif %}
+
+                {% if settings.activeBlog %}
+                    <p>
+                        <a href="{{ path('app_post_index') }}">Actualités</a>
+                    </p>
+                {% endif %}
+            </div>
+            <!--/.Second column-->
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!--Third column-->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h4 class="h4-responsive mb-4 pt-2 font-weight-stone-600">Liens utiles</h4>
+                <p>
+                    <a href="{{ path('app_mention_confidentialite') }}">Confidentialité</a>
+                </p>
+                <p>
+                    <a href="{{ path('app_mention_legale') }}">Mentions Légales</a>
+                </p>
+                <p>
+                    <a href="{{ path('app_cgv') }}">CGV</a>
+                </p>
+                <p>
+                    <a href="{{ path('app_contact') }}">Contactez-nous</a>
+                </p>
+            </div>
+            <!--/.Third column-->
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!--Fourth column-->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h4 class="h4-responsive mb-4 pt-2 font-weight-stone-600">Contact</h4>
+                {% if settings.address %}
+                    <p>
+                        <i class="fas fa-home mr-3"></i> {{ settings.address }}
+                    </p>
+                {% endif %}
+                <p>
+                    <i class="fas fa-envelope mr-3"></i> {{ settings.email }}
+                </p>
+                <p>
+                    <i class="fas fa-phone-alt mr-3"></i> {{ settings.phone }}
+                </p>
+
+                {% if settings.fax %}
+                    <p>
+                        <i class="fas fa-print mr-3"></i> {{ settings.fax }}
+                    </p>
+                {% endif %}
+
+                {% include 'site/newsletter/_modal_subscriibe.html.twig' %}
+            </div>
+        </div>
+        <hr>
+
+        <div class="row py-3 d-flex align-items-center">
+            <div class="col-md-7 col-lg-8">
+                <p class="text-center text-md-left grey-text">
+                    © 2020 Copyright: <a href="{{ path('app_home')}} " target="_blank"> jaspevoyance.com </a>
+                </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                <!--Social buttons-->
+                <div class="social-section text-center text-md-left">
+                    <ul class="list-unstyled list-inline">
+                        {% if settings.facebookAddress %}
+                            <li  class="list-inline-item mx-0">
+                                <a target="_blank" href="{{ settings.facebookAddress }}" class="btn-floating btn-sm rgba-white-slight mr-xl-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.twitterAddress %}
+                            <li class="list-inline-item mx-0">
+                                <a target="_blank" href="{{ settings.twitterAddress }}" class="btn-floating btn-sm rgba-white-slight mr-xl-4">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.youtubeAddress %}
+                            <li class="list-inline-item mx-0">
+                                <a target="_blank" href="{{ settings.youtubeAddress }}" class="btn-floating btn-sm rgba-white-slight mr-xl-4">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.instagramAddress %}
+                            <li class="list-inline-item mx-0">
+                                <a target="_blank" href="{{ settings.instagramAddress }}" class="btn-floating btn-sm rgba-white-slight mr-xl-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if settings.linkedinAddress %}
+                            <li class="list-inline-item mx-0">
+                                <a target="_blank" href="{{ settings.linkedinAddress }}" class="btn-floating btn-sm rgba-white-slight mr-xl-4">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

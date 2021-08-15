@@ -1,0 +1,77 @@
+{% set settings = config.get %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="h3-responsive text-primary font-weight-stone-600">
+                            Données personnelles
+                        </h3>
+                        <p>
+                            Les informations recueillies sur ce site sont enregistrées dans un fichier informatisé par
+                            jaspevoyance.com pour la gestion du contenu du site et du compte utilisateur.
+                        </p>
+                        <p>
+                            Elles sont conservées jusqu’à suppression du compte et sont destinées exclusivement à jaspevoyance.com.
+                        </p>
+                        <p>
+                            Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d’accès aux données
+                            vous concernant et les faire rectifier en contactant: {{ settings.email }}.
+                        </p>
+
+                        <h3 class="h3-responsive mt-5 text-primary font-weight-stone-600">
+                            Cookies
+                        </h3>
+                        <p>
+                            Pour assurer le bon fonctionnement de ce site, nous devons parfois enregistrer de petits fichiers de
+                            données sur l’équipement de nos utilisateurs. La plupart des grands sites web font de même.
+                        </p>
+
+                        <h5 class="h5-responsive mt-5 text-primary font-weight-stone-600">Qu’est-ce qu’un cookie ?</h5>
+                        <p>
+                            Un cookie est un petit fichier texte que les sites web sauvegardent sur votre ordinateur ou
+                            appareil mobile lorsque vous les consultez. Il permet à ces sites de mémoriser vos actions et
+                            préférences (nom d’utilisateur, langue, taille des caractères et autres paramètres d’affichage)
+                            pendant un temps donné, pour que vous n’ayez pas à indiquer ces informations à chaque fois vous
+                            consultez ces sites ou naviguez d’une page à une autre.
+                        </p>
+
+                        <h5 class="h5-responsive mt-5 text-primary font-weight-stone-600">Comment utilisons-nous les cookies ?</h5>
+                        <p>
+                            Nous utilisons les cookies uniquement à des fins de statistiques pour connaître le comportement
+                            des visiteurs et optimiser leur expérience.
+                        </p>
+
+                        <h5 class="h5-responsive mt-5 text-primary font-weight-stone-600">Liste des cookies générés par ce site</h5>
+                        <p>
+                            <strong class="font-weight-stone-600 text-primary">PHPSESSID</strong>: Ce cookie technique, indispensable,
+                            sert à optimiser l'expérience des visiteurs.
+                        </p>
+                        <p>
+                            <strong class="font-weight-stone-600 text-primary">cookieconsent_status</strong>: Ce cookie, indispensable,
+                            sert à mémoriser votre choix concernant l’utilisation des cookies sur notre site. Ce cookie est valable 12 mois.
+                        </p>
+
+                        <h5 class="h5-responsive mt-5 text-primary font-weight-stone-600">Comment contrôler les cookies</h5>
+                        <p>
+                            Vous pouvez contrôler et/ou supprimer des cookies comme vous le souhaitez. Pour en savoir plus,
+                            consultez <a href="http://aboutcookies.org" class="text-primary font-weight-stone-600"></a>.
+                            Vous avez la possibilité de supprimer tous les cookies déjà stockés
+                            sur votre ordinateur et de configurer la plupart des navigateurs pour qu’ils les bloquent.
+                            Toutefois, dans ce cas, vous devrez peut-être indiquer vous-mêmes certaines préférences chaque
+                            fois que vous vous rendrez sur un site, et certains services et fonctionnalités risquent de ne
+                            pas être accessibles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

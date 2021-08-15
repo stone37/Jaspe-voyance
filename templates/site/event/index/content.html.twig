@@ -1,0 +1,80 @@
+{% set hash_month = {
+    "Jan": "Jan", "Feb": "Fév", "Mar": "Mar", "Apr": "Avr",
+    "May": "Mai", "Jun": "Jun", "Jul": "Jul", "Aug": "Aou",
+    "Sep": "Sep", "Oct": "Oct", "Nov": "Nov", "Dec": "Déc",
+} %}
+
+<section>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-9 col-md-8 col-12 mt-1">
+            {% if events|length > 0 %}
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <h2 class="h2-responsive text-primary font-weight-600 text-center">Participez à nos soirées rencontres</h2>
+                        <p class="text-center my-4">
+                            Notre vocation est de mettre en relation des personnes qui veulent vraiment sortir de la
+                            solitude affective. Plus rapides, plus authentiques et plus sûrs, les rencontres
+                            en petit comité vous permettront d'échapper au stress du speed-dating.
+                        </p>
+                    </div>
+
+                    {% for event in events %}
+                        <div class="col-12 col-md-6 mb-4">
+                            <div class="card card-cascade narrower">
+                                <div class="view view-cascade overlay">
+                                    <img class="card-img-top" src="{{ vich_uploader_asset(event, 'file') }}"
+                                         alt="Card image cap">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body card-body-cascade text-center">
+                                    <div class="rec-data bg-primary text-white py-2 px-2">
+                                        <div class="date-days">{{ event.eventDateAt|date('d') }}</div>
+                                        <div class="date-year mt-2">
+                                            {{ hash_month[event.eventDateAt|date('M')] }}. {{ event.eventDateAt|date('Y') }}
+                                        </div>
+                                    </div>
+                                    <div class="rec-location bg-secondary text-white d-flex">
+                                        <div class="mr-2"><i class="fas fa-map-marker-alt"></i></div>
+                                        <div class="city">{{ event.city }}</div>
+                                    </div>
+                                    <h4 class="font-weight-bold text-primary card-title">{{ event.title|truncate(25) }}</h4>
+                                    <p class="card-text my-4">
+                                        {{ event.partialDescription|truncate(90) }}
+                                    </p>
+                                    <div>
+                                        <a href="{{ path('app_event_show', {'slug': event.slug}) }}"
+                                           class="btn btn-secondary btn-block btn-sm">En savoir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="col-12 d-flex justify-content-center mt-3">
+                        {{ knp_pagination_render(events, 'Ui/_pagination.html.twig') }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="row app-user d-flex justify-content-center">
+                    <div class="col-12 col-md-8 text-center mt-3 mt-md-5">
+                        <h3 class="text-secondary h3-responsive font-weight-stone-600">
+                            Aucune rencontre sur le site
+                        </h3>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-1">
+                {{ render(controller('App\\Controller\\BannerController::index', {'service': 'rencontre'})) }}
+
+                {{ render(controller('App\\Controller\\PostController::partial')) }}
+
+                {% include 'site/newsletter/_subscribe.html.twig' %}
+            </div>
+        </div>
+    </div>
+</section>

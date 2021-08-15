@@ -1,0 +1,46 @@
+easy_admin:
+    entities:
+        Post:
+            label: 'Tous les articles'
+            class: App\Entity\Post
+            form:
+                fields:
+                    - { type: 'group', columns: 9, label: '', icon: '' }
+
+                    - { property: title, label: 'Titre', type: text, type_options: { trim: true } }
+                    - { property: content, label: 'Contenu', type: fos_ckeditor }
+                    - { property: published, label: 'Publier maintenant', type: checkbox }
+                    - { property: hasComments, label: 'Autoriser les commentaires', type: checkbox }
+
+                    - { type: 'group', columns: 3, label: '' }
+                    - { type: 'section', label: 'Catégories', icon: 'list-alt', css_class: 'pb-0 pt-1' }
+                    - { property: 'categories', label: false, type: entity,
+                        type_options: { class: 'App\Entity\Category', label: false, expanded: true, multiple: true } }
+                    - { type: 'section', label: 'Étiquettes', icon: 'tags', css_class: 'pb-0 pt-1' }
+                    - { property: 'tags', label: false, type: entity,
+                        type_options: { class: 'App\Entity\Tag', label: false, expanded: true, multiple: true } }
+                    - { type: 'section', label: 'Image mise en avant', icon: 'file-image-o', css_class: 'pb-0 pt-2' }
+                    - { property: 'file', type: 'vich_image', label: 'Image' }
+            list:
+                title: 'Liste des articles'
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                #batch_actions:
+                    #- { name: 'disabled', label: 'Désactiver', ask_confirm: true, icon: 'share', css_class: 'btn-amber' }
+                actions:
+                    - '-search'
+                    - '-show'
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'title', label: 'Titre', type: string }
+                    - { property: 'categories', label: 'Catégories', type: string }
+                    - { property: 'tags', label: 'Étiquettes', type: integer }
+                    - { property: 'publishedAt', label: 'Publié le', type: datetime }
+                search:
+                    sort: ['createdAt', 'desc']
+            new:
+                title: 'Nouveau article'
+            edit:
+                title: 'Edition d''un article'
+
+

@@ -1,0 +1,31 @@
+easy_admin:
+    entities:
+        Tax:
+            label: 'Taxe'
+            class: App\Entity\Tva
+            form:
+                fields:
+                    - { property: name, label: 'Nom', type: text, type_options: { trim: true, help: 'Champs obligatoire' } }
+                    - { property: value, label: 'Montant en %', type: money, type_options: { trim: true, help: 'Champs obligatoire' } }
+            list:
+                title: 'Liste des taux de taxe'
+                collapse_actions: false
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                actions:
+                    - '-show'
+                    - '-search'
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Editer' }
+                    - { name: 'delete', icon: 'times', label: false, title: 'Supprimer' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: value, label: 'Montant en %' }
+            new:
+                title: 'Nouveau taux'
+            edit:
+                title: 'Edition d''un taux'
+                actions:
+                    - '-delete'
+
+
+

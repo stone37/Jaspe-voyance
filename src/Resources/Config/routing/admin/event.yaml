@@ -1,0 +1,41 @@
+app_admin_event_index:
+    path: /events/
+    methods: [GET]
+    controller: App\Controller\Admin\EventController::index
+
+app_admin_event_create:
+    path: /events/create/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\EventController::create
+
+app_admin_event_edit:
+    path: /events/{id}/edit/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\EventController::edit
+    requirements:
+        id: \d+
+
+app_admin_event_show:
+    path: /events/{id}/show/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\EventController::show
+    requirements:
+        id: \d+
+
+app_admin_event_delete:
+    path: /events/{id}/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\EventController::delete
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+app_admin_event_bulk_delete:
+    path: /events/bulk/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\EventController::deleteBulk
+    options:
+        expose: true
+
+

@@ -1,0 +1,40 @@
+{% if settings.activeBlog and posts|length > 0 %}
+    <section class="section widget-content wow fadeIn mb-5">
+        <div class="card card-body pb-0">
+            <h5 class="h5-responsive text-primary text-center spacing grey lighten-4 py-2 mb-4">
+                <strong class="font-weight-600">Actualités</strong>
+            </h5>
+
+            {% for post in posts %}
+                <div class="single-post">
+                    <div class="row mb-4">
+                        <div class="col-5">
+                            <div class="view overlay">
+                                <img src="{{ vich_uploader_asset(post, 'file') }}" class="img-fluid z-depth-1 rounded-0" alt="sample image">
+                                <a href="{{ path('app_post_show', {'slug': post.slug}) }}">
+                                    <div class="mask waves-light"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <h6 class="mt-0 font-small">
+                                <a href="{{ path('app_post_show', {'slug': post.slug}) }}">
+                                    <strong>{{ post.title|truncate(14) }}</strong>
+                                </a>
+                            </h6>
+                            <div class="post-data">
+                                <p class="font-small grey-text mb-0">
+                                    <i class="far fa-clock-o"></i> {{ post.publishedAt|date('d/m/Y') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
+
+
+
+
+

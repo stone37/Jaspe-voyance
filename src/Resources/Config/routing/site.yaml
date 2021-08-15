@@ -1,0 +1,53 @@
+#app_partial:
+#    resource: "../Resources/Config/routing/site/partial/partial.yaml"
+#    prefix: /_partial
+
+app_home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+app_contact:
+    path: /contact/
+    controller: App\Controller\ContactController::index
+
+app_mention_legale:
+    path: /mentions-legales/
+    controller: App\Controller\SocieteController::mention
+
+app_mention_confidentialite:
+    path: /confidentialite/
+    controller: App\Controller\SocieteController::confidentialite
+
+app_cgv:
+    path: /conditions-generales-de-vente/
+    controller: App\Controller\SocieteController::cgv
+
+app_voyance:
+    resource: "../Resources/Config/routing/site/voyance.yaml"
+
+app_rencontre:
+    resource: "../Resources/Config/routing/site/rencontre.yaml"
+
+app_temoignage:
+    resource: "../Resources/Config/routing/site/review.yaml"
+
+app_produit:
+    resource: "../Resources/Config/routing/site/product.yaml"
+
+app_soins:
+    resource: "../Resources/Config/routing/site/soins.yaml"
+
+app_blog:
+    resource: "../Resources/Config/routing/site/blog.yaml"
+
+app_order:
+    resource: "../Resources/Config/routing/site/order.yaml"
+
+app_cart:
+    resource: "../Resources/Config/routing/site/cart.yaml"
+
+app_newsletter:
+    resource: "../Resources/Config/routing/site/newsletter.yaml"
+
+
+

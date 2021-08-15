@@ -1,0 +1,31 @@
+app_admin_shipment_index:
+    path: /shipments/
+    methods: [GET]
+    controller: App\Controller\Admin\ShipmentController::index
+
+app_admin_shipment_shipment:
+    path: /shipments/{id}/shipment/
+    methods: [GET]
+    controller: App\Controller\Admin\ShipmentController::shipment
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+app_admin_shipment_delete:
+    path: /shipments/{id}/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\ShipmentController::delete
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+app_admin_shipment_bulk_delete:
+    path: /shipments/bulk/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\ShipmentController::deleteBulk
+    options:
+        expose: true
+
+

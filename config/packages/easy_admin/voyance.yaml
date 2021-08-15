@@ -1,0 +1,52 @@
+easy_admin:
+    entities:
+        VoyanceC:
+            label: 'Consultation en cabinet'
+            class: App\Entity\Demand
+            list:
+                title: 'Consultation en cabinet'
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                dql_filter: 'entity.type = 1'
+                actions:
+                    - '-edit'
+                    - '-new'
+                    - '-search'
+                    - '-show'
+                    - { name: 'show', icon: 'eye', label: false' }
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'name', label: 'Nom et prénom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'phone', label: 'Téléphone' }
+                    - { property: 'disponible', label: 'Disponibilité' }
+                    - { property: 'comments', label: 'Commentaire' }
+                    - { property: 'createdAt', label: 'Envoyer le' }
+
+
+        VoyanceP:
+            label: 'Consultation par téléphone'
+            class: App\Entity\Demand
+            list:
+                title: 'Consultation par téléphone'
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                dql_filter: 'entity.type = 2'
+                actions:
+                    - '-edit'
+                    - '-new'
+                    - '-search'
+                    - '-show'
+                    - { name: 'show', icon: 'eye', label: false' }
+                    - { name: 'disabled', icon: 'share', label: false, title: 'Désactiver' }
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'name', label: 'Nom et prénom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'phone', label: 'Téléphone' }
+                    - { property: 'disponible', label: 'Disponibilité' }
+                    - { property: 'birthDay', label: 'Date de naissance' }
+                    - { property: 'createdAt', label: 'Envoyer le' }
+
+
+

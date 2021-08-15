@@ -1,0 +1,86 @@
+easy_admin:
+    entities:
+        ReviewA:
+            label: 'Témoignages actif'
+            class: App\Entity\Review
+            list:
+                title: 'Liste des témoignages actif'
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                dql_filter: 'entity.enabled = 1'
+                batch_actions:
+                    - { name: 'disabled', label: 'Désactiver', ask_confirm: true, icon: 'share', css_class: 'btn-amber' }
+                actions:
+                    - '-edit'
+                    - '-new'
+                    - '-search'
+                    - { name: 'show', icon: 'eye', label: false' }
+                    - { name: 'disabled', icon: 'share', label: false, title: 'Désactiver' }
+                    - { name: 'moveup', icon: 'arrow-up', label: false, title: 'Monter' }
+                    - { name: 'movedown', icon: 'arrow-down', label: false, title: 'Descendre' }
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'name', label: 'Prénom', type: string }
+                    - { property: 'email', label: 'Email', type: string }
+                    - { property: 'note', label: 'Note (sur 5)', type: integer }
+                    - { property: 'description', label: 'Description', type: text }
+                search:
+                    sort: ['createdAt', 'desc']
+            show:
+                title: 'Voir le témoignage actif'
+                collapse_actions: false
+                actions:
+                    - { name: 'delete', icon: 'times', label: Supprimer, css_class: 'btn btn-danger btn-pt' }
+                    - { name: 'disabled', icon: 'share', label: Désactiver, css_class: 'btn btn-warning btn-pt' }
+                fields:
+                    - { property: 'id', label: 'Identifiant' }
+                    - { property: 'name', label: 'Prénom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'note', label: 'Note (sur 5)' }
+                    - { property: 'description', label: 'Description' }
+                    - { property: 'position', label: 'Position' }
+                    - { property: 'enabled', label: 'Actif' }
+                    - { property: 'createdAt', label: 'Date de creation' }
+
+        Review:
+            label: 'Témoignages inactif'
+            class: App\Entity\Review
+            list:
+                title: 'Liste des témoignages inactif'
+                max_results: 25
+                sort: ['createdAt', 'desc']
+                dql_filter: 'entity.enabled = 0'
+                batch_actions:
+                    - { name: 'enabled', label: 'Activer', ask_confirm: true, icon: 'reply', css_class: 'btn-success' }
+                actions:
+                    - '-edit'
+                    - '-new'
+                    - '-search'
+                    - { name: 'show', icon: 'eye', label: false' }
+                    - { name: 'enabled', icon: 'reply', label: false, title: 'Activer' }
+                    - { name: 'delete', icon: 'times', label: false }
+                fields:
+                    - { property: 'name', label: 'Prénom', type: string }
+                    - { property: 'email', label: 'Email', type: string }
+                    - { property: 'note', label: 'Note (sur 5)', type: integer }
+                    - { property: 'description', label: 'Description', type: text }
+                search:
+                    sort: ['createdAt', 'desc']
+            show:
+                title: 'Voir le témoignage inactif'
+                collapse_actions: false
+                actions:
+                    - { name: 'delete', icon: 'times', label: Supprimer, css_class: 'btn btn-danger btn-pt' }
+                    - { name: 'enabled', icon: 'reply', label: Activer, css_class: 'btn btn-success btn-pt' }
+                fields:
+                    - { property: 'id', label: 'Identifiant' }
+                    - { property: 'name', label: 'Prénom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'note', label: 'Note (sur 5)' }
+                    - { property: 'description', label: 'Description' }
+                    - { property: 'position', label: 'Position' }
+                    - { property: 'enabled', label: 'Actif' }
+                    - { property: 'createdAt', label: 'Date de creation' }
+
+
+

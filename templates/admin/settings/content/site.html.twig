@@ -1,0 +1,11 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'settings-form'}}) }}
+
+    {% include 'admin/settings/form/site.html.twig' with {'form': form} %}
+
+    <section class="content-footer text-right">
+        <button type="submit" class="btn btn-primary action-save">
+            <i class="fa fa-save"></i>
+            <span class="btn-label">{{ 'action.save'|trans }}</span>
+        </button>
+    </section>
+{{ form_end(form, {'render_rest': false}) }}

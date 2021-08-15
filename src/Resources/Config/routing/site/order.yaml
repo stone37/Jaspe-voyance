@@ -1,0 +1,32 @@
+app_order_validate:
+    path: /api/banque/{id}/
+    controller: App\Controller\OrderController::validateOrder
+    requirements:
+        id: \d+
+
+app_order_demand_validate:
+    path: /api/banque/demand/{id}/
+    controller: App\Controller\OrderController::validateDemandOrder
+    requirements:
+        id: \d+  
+
+app_order_invoice: 
+    path: /invoice/{id}/
+    controller: App\Controller\OrderController::invoice
+    requirements:
+        id: \d+
+        #options:
+        #expose: true
+
+app_order_pay:
+    path: /order/payment/
+    controller: App\Controller\OrderController::payment
+    requirements:
+        id: \d+
+
+app_order_demand_pay:
+    path: /order/demand/payment/
+    controller: App\Controller\OrderController::paymentD
+    requirements:
+        id: \d+
+

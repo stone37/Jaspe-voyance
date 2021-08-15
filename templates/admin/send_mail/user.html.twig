@@ -1,0 +1,20 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Envoyer un mail aux utilisateurs | {{ parent() }}{% endblock %}
+
+{% block app_body %}
+    {% include 'admin/send_mail/user/_header.html.twig' %}
+
+    {% include 'admin/send_mail/user/_content.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'Ui/_javascripts.html.twig' with {'path': 'bundles/cksourceckfinder/ckfinder/ckfinder.js'} %}
+    {% include 'Ui/_javascripts.html.twig' with {'path': 'assets/js/setup-ckfinder.js'} %}
+{% endblock %}

@@ -1,0 +1,36 @@
+app_voyance_index:
+    path: /voyances/
+    methods: [GET]
+    controller: App\Controller\VoyanceController::index
+
+app_voyance_cabinet:
+    path: /voyances/voyance-en-cabinet/
+    methods: [GET, POST]
+    controller: App\Controller\VoyanceController::cabinet
+
+app_voyance_cabinet_contact:
+    path: /voyances/vc/rendezvous/
+    methods: [GET, POST]
+    controller: App\Controller\VoyanceController::cabinetContact
+
+app_voyance_phone:
+    path: /voyances/voyance-par-telephone/
+    methods: [GET, POST]
+    controller: App\Controller\VoyanceController::phone
+
+app_voyance_phone_contact:
+    path: /voyances/vt/rendezvous/
+    methods: [GET, POST]
+    controller: App\Controller\VoyanceController::phoneContact
+
+app_voyance_mail:
+    path: /voyances/voyance-par-mail/
+    methods: [GET, POST]
+    controller: App\Controller\VoyanceController::mail
+
+app_voyance_mail_contact:
+    path: /voyances/vm/rendezvous/
+    methods: [GET, POST]
+    controller: App\Controller\VoyanceController::mailContact
+
+

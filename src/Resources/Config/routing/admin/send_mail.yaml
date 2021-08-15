@@ -1,0 +1,47 @@
+app_admin_send_mail_index:
+    path: /send-mail/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\SendEmailController::index
+
+app_admin_send_mail_create:
+    path: /send-mail/create/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\SendEmailController::create
+
+app_admin_resend_mail:
+    path: /send-mail/{id}/resend/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\SendEmailController::resend
+    requirements:
+        id: \d+
+
+app_admin_send_mail_delete:
+    path: /send-mail/{id}/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\SendEmailController::delete
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+app_admin_send_mail_bulk_delete:
+    path: /send-mail/bulk/delete/
+    methods: [GET, DELETE]
+    controller: App\Controller\Admin\SendEmailController::deleteBulk
+    options:
+        expose: true
+
+app_admin_send_user_mail:
+    path: /send-mail/user/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\SendEmailController::sendUser
+
+app_admin_send_newsletter_mail:
+    path: /send-mail/newsletter/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\SendEmailController::sendNewsletter
+
+app_admin_newsletter_index:
+    path: /newsletter/
+    methods: [GET, POST]
+    controller: App\Controller\Admin\SendEmailController::newsletter

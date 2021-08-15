@@ -1,0 +1,11 @@
+app_dashboard_order_index:
+    path: /commandes/
+    methods: [GET]
+    controller: App\Controller\DashboardController::order
+
+app_dashboard_order_index_active:
+    path: /commandes/valide/
+    methods: [GET]
+    controller: App\Controller\DashboardController::orderA
+
+
